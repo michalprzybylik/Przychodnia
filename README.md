@@ -19,7 +19,7 @@ BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
 - wykonywania badania laboratoryjnego przez laboranta (i jego weryfikacji przez kierownika laboratorium)
 - wykonanie wizyty przez lekarza
 - przegląd wyników badań
-- obsługa stanów wizyt i stanów badań laboratoryjnych.
+- obsługa stanów wizyt i stanów badań laboratoryjnych
 
 ### Raporty o charakterze:
 - medycznym
