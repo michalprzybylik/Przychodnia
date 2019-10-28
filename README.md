@@ -1,7 +1,7 @@
 # BD2Projekt
 BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
 
-.NET, VS, C#, SQLServer
+Python3, Django
 
 ## Opis
 
