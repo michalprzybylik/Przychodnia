@@ -24,6 +24,7 @@ SECRET_KEY = '@pcm8dqiyi$b@vy^_0s#g^rbtmqd_h93o5+x-cjcrsitt@y$q$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+USE_SQLITE = True
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'common',
+
+    # 'laboratorium_app',
+    # 'laboratorium_badanie_lab',
+
+    'przychodnia_app',
+    # 'przychodnia_badanie_fiz',
+    'przychodnia_pacjent',
+    # 'przychodnia_wizyta',
 ]
 
 MIDDLEWARE = [
@@ -73,26 +84,28 @@ WSGI_APPLICATION = 'Przychodnia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'sql_mode': 'STRICT_TRANS_TABLES',
-#         },
-#         'NAME': '<dbname>',
-#         'USER': '<user>',
-#         'PASSWORD': '<pwd>',
-#         'HOST': '<host>',
-#         'PORT': '<port>' # 3306
-#     }
-# }
-
-DATABASES = {
-    'default': {
+if USE_SQLITE:
+    DATABASES = {
+        'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'sql_mode': 'STRICT_TRANS_TABLES',
+            },
+            'NAME': 'bdproj_przychodnia_db',
+            'USER': '<user>',
+            'PASSWORD': '<pwd>',
+            'HOST': 'localhost',
+            'PORT': '3306'
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
