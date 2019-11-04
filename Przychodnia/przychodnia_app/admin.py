@@ -7,6 +7,7 @@ from przychodnia_app import models
 class RejestratorkaAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(models.Lekarz)
 class LekarzAdmin(admin.ModelAdmin):
     pass
