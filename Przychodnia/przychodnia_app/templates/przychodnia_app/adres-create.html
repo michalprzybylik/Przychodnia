@@ -1,0 +1,37 @@
+{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% block title %}Rejestruj wizyte{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <h4>Dodaj adres</h4>
+      <hr>
+      <form class="" action="{% url 'przychodnia_app:rejestratorka-dodaj-adres' %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="id_miejscowosc">{{form.miejscowosc.label}}</label>
+            {{form.miejscowosc}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="id_ulica">{{form.ulica.label}}</label>
+            {{form.ulica}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="id_nr_domu">{{form.nr_domu.label}}</label>
+            {{form.nr_domu}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="id_nr_lokalu">{{form.nr_lokalu.label}}</label>
+            {{form.nr_lokalu}}
+          </div>
+        </div>
+        <hr>
+        <input type="submit" name="submit" class="btn btn-primary" value="Dodaj adres">
+      <form>
+    </div>
+  </div>
+</div>
+{% endblock %}

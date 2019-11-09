@@ -1,8 +1,30 @@
+from datetime import timedelta
+
 from django.db import models
+from django.db.models import Q
+from django.utils import timezone
 
 from przychodnia_pacjent.models import Pacjent
 from przychodnia_app.models import Rejestratorka
 from przychodnia_app.models import Lekarz
+
+
+class WizytaQuerySet(models.QuerySet):
+    def get_old(self):
+        return self.filter(Q(dt_rej__lte=timezone.now() - timedelta(hours=12)))
+
+    def get_new(self):
+        return self.filter(Q(dt_rej__gte=timezone.now() - timedelta(hours=12)))
+
+class WizytaManager(models.Manager):
+    def get_queryset(self):
+        return WizytaQuerySet(self.model, using=self._db)
+
+    def get_old(self):
+        return self.get_queryset().get_old()
+
+    def get_new(self):
+        return self.get_queryset().get_new()
 
 class Wizyta(models.Model):
     STATUS = (
@@ -20,5 +42,8 @@ class Wizyta(models.Model):
     rejestratorka = models.ForeignKey(Rejestratorka, on_delete=models.PROTECT)
     lekarz = models.ForeignKey(Lekarz, on_delete=models.PROTECT)
 
+    wizyty = WizytaManager()
+
     class Meta:
+        ordering = ["-dt_rej"]
         verbose_name_plural = "Wizyty"

@@ -15,7 +15,8 @@ class Login(View):
         if user is not None:
             login(request, user)
             # Zdecyduj gdzie przekierować
-            breakpoint()
+            if user.is_staff:
+                return redirect(reverse('admin:index'))
             if user.role == "REJ":
                 return redirect(reverse('przychodnia_app:rejestratorka-dashboard'))
             if user.role == "LEK":
