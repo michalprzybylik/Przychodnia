@@ -30,6 +30,18 @@
         </div>
       </li> -->
     </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white">
+          Zalogowano jako: {{user}} &nbsp;|&nbsp;
+        <a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'common:logout' %}">
+          <i class="fas fa-sign-out-alt"></i>&nbsp;Wyloguj
+          <a>
+      </li>
+    </ul>
   </div>
 </nav>
 {% endblock %}

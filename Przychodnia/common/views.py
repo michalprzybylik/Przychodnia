@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 from django.contrib.auth import (authenticate, login, logout)
@@ -29,4 +30,5 @@ class Login(View):
 class Logout(View):
     def get(self, request):
         logout(request)
-        return redirect("/")
+        messages.success(self.request, 'Wylogowano')
+        return redirect("common:login")

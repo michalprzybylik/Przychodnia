@@ -11,10 +11,12 @@ from przychodnia_app.models import Lekarz
 
 class WizytaQuerySet(models.QuerySet):
     def get_old(self):
-        return self.filter(Q(dt_rej__lte=timezone.now() - timedelta(hours=12)))
+        return self.filter(
+            Q(status='REJ') & Q(dt_rej__lte=timezone.now() - timedelta(hours=12)))
 
     def get_new(self):
-        return self.filter(Q(dt_rej__gte=timezone.now() - timedelta(hours=12)))
+        return self.filter(
+            Q(status='REJ') & Q(dt_rej__gte=timezone.now() - timedelta(hours=12)))
 
 class WizytaManager(models.Manager):
     def get_queryset(self):
