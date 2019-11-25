@@ -1,6 +1,6 @@
 # BD2Projekt
 BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
-
+...
 Python3, Django
 
 ## Opis
