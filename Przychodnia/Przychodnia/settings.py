@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'common',
 
-    # 'laboratorium_app',
+    'laboratorium_app',
     # 'laboratorium_badanie_lab',
 
     'przychodnia_app',

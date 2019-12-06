@@ -1,3 +1,11 @@
 from django.contrib import admin
+from laboratorium_app import models
 
-# Register your models here.
+@admin.register(models.Laborant)
+class LaborantAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.KierownikLabarotorium)
+class KierownikLabarotoriumAdmin(admin.ModelAdmin):
+    pass
