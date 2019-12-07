@@ -3,6 +3,9 @@ BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
 ...
 Python3, Django
 
+## ToDo
+- usunąć pole Opis z widoku rejestratorki
+
 ## Opis
 
 ### Definiowanie użytkowników:
