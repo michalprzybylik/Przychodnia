@@ -37,8 +37,7 @@ class PacjentForm(forms.ModelForm):
 class AdresForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AdresForm, self).__init__(*args, **kwargs)
-        self.fields['miejscowosc'].widget.attrs.update(
-            {'class': 'form-control'})
+        self.fields['miejscowosc'].widget.attrs.update({'class': 'form-control'})
         self.fields['ulica'].widget.attrs.update({'class': 'form-control'})
         self.fields['nr_domu'].widget.attrs.update({'class': 'form-control'})
         self.fields['nr_lokalu'].widget.attrs.update({'class': 'form-control'})

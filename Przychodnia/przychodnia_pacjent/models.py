@@ -1,5 +1,5 @@
 from django.db import models
-
+from common.models import CommonProfileModel
 
 class Adres(models.Model):
     miejscowosc = models.CharField("Miejscowość", max_length=32)
@@ -14,10 +14,8 @@ class Adres(models.Model):
         verbose_name_plural = "Adresy Zamieszkania"
 
 
-class Pacjent(models.Model):
+class Pacjent(CommonProfileModel):
     adres = models.ForeignKey(Adres, on_delete=models.PROTECT)
-    imie = models.CharField("Imie", max_length=32)
-    nazwisko = models.CharField("Nazwisko", max_length=32)
     pesel = models.CharField("PESEL", max_length=11, unique=True)
 
     def __str__(self):
