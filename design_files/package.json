@@ -1,0 +1,36 @@
+{
+  "name": "przychodnia-proj-bd2",
+  "private": true,
+  "version": "1.0.0",
+  "repository": "git@github.com:rolzwy7/rapid-web-design.git",
+  "author": "rolzwy7 <rolzwy7@gmail.com>",
+  "license": "None",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "bootstrap": "^4.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.1",
+    "cssnano": "^4.1.10",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-manifest-plugin": "^2.2.0"
+  },
+  "scripts": {
+    "build-verbose": "webpack --verbose --display-modules",
+    "build": "webpack",
+    "start": "webpack-dev-server --open"
+  }
+}

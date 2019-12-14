@@ -1,0 +1,44 @@
+@charset 'utf-8';
+
+
+// 1. Config and Helpers
+// Should not output a single line of CSS when compiled on its own.
+@import
+  "abstracts/variables",
+  "abstracts/mixins",
+  "abstracts/functions";
+
+// 2. Base stuff
+@import
+  "base/fonts",
+  "base/reset",
+  "base/typography";
+
+// 3. Layout related
+@import
+  "layout/footer",
+  "layout/forms",
+  "layout/grid",
+  "layout/header",
+  "layout/navigation";
+
+// 4. Components
+@import
+  "components/carousel",
+  "components/media",
+  "components/thumbnail";
+
+// 5. Page-specific stlyes
+@import
+  "pages/home",
+  "pages/contact";
+
+// 6. Themes
+@import
+  "themes/theme",
+  "themes/admin";
+
+// 7. Vendors & Vendors Extensions
+@import
+  "vendors/bootstrap",
+  "vendors-extensions/bootstrap";

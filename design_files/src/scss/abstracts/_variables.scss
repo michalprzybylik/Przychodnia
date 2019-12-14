@@ -1,0 +1,20 @@
+// variables
+
+// $color-variants: (
+//     100:  -10%,
+//     200:  -25%,
+//     300:  -50%,
+//     400:  -75%,
+//     500:  100%,
+//     600:   75%,
+//     700:   50%,
+//     800:   25%,
+//     900:   15%
+// );
+//
+// @each $color-name, $color-value in $colors {
+//   @each $variant-name, $variant-value in $color-variants {
+//     $mix-color: if($variant-value < 0, white, black);
+//     $colors: map-merge($colors, ($color-name+'-'+$variant-name: mix($color-value, $mix-color, abs($variant-value))));
+//   }
+// }
