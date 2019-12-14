@@ -50,17 +50,20 @@ let rules = [
   {
     test: /\.(woff|woff2|eot|ttf|otf)$/i,
     use: [
-      'file-loader?name=/fonts/[name].[ext]',
+      'file-loader?name=./fonts/[name].[ext]',
     ],
   },
 ]
 
 module.exports = {
-  mode: 'development', // production / development
+  mode: 'production', // production / development
   // https://webpack.js.org/configuration/devtool/
   devtool: undefined, //'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
+  },
+  externals: {
+    jquery: 'jQuery'
   },
   resolve: {
     alias: {

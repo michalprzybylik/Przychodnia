@@ -3,6 +3,12 @@ BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
 ...
 Python3, Django
 
+## Bundle
+- fontawesome-free ^5.12.0
+- bootstrap ^4.4.1
+- jquery ^3.4.1
+- popper.js ^1.16.0
+
 ## ToDo
 - usunąć pole Opis z widoku rejestratorki
 

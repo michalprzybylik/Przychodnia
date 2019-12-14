@@ -1,21 +1,24 @@
 {% if messages %}
   {% for message in messages %}
-    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-    <div class="alert alert-success" role="alert">
-    <i class="fas fa-check-circle"></i>&nbsp;
-    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-    <div class="alert alert-warning" role="alert">
-    <i class="fas fa-exclamation-triangle"></i>&nbsp;
-    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-    <div class="alert alert-danger" role="alert">
-    <i class="fas fa-exclamation-circle"></i>&nbsp;
-    {% else %}
-    <div class="alert alert-secondary" role="alert">
-    {% endif %}
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div class="toast main-toast main-toast-primary" role="alert" aria-live="assertive" aria-atomic="true">
+  {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+  <div class="toast main-toast main-toast-warning" role="alert" aria-live="assertive" aria-atomic="true">
+  {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+  <div class="toast main-toast main-toast-danger" role="alert" aria-live="assertive" aria-atomic="true">
+  {% else %}
+  <div class="toast main-toast" role="alert" aria-live="assertive" aria-atomic="true">
+  {% endif %}
+  <div class="toast-header">
+    <i class="fas fa-comment-medical"></i>
+    <strong class="mr-auto pl-2">Przychodnia</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    </div>
-  {% endfor %}
+  </div>
+  <div class="toast-body">
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
 {% endif %}

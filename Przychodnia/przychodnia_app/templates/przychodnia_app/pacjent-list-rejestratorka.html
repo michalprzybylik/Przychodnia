@@ -1,0 +1,9 @@
+{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% block title %}Rejestracja{% endblock %}
+{% block content %}
+
+{% for pacjent in pacjenci %}
+{{pacjent}}
+{% endfor %}
+
+{% endblock %}

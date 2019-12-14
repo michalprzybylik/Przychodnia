@@ -2,19 +2,251 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Przychodnia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- dev -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+    <!-- dev -->
   </head>
   <body>
-    <p>
-      Index1
-      <span class="badge badge-primary">Primary</span>
-<span class="badge badge-secondary">Secondary</span>
-<span class="badge badge-success">Success</span>
-<span class="badge badge-danger">Danger</span>
-<span class="badge badge-warning">Warning</span>
-<span class="badge badge-info">Info</span>
-<span class="badge badge-light">Light</span>
-<span class="badge badge-dark">Dark</span>
-    </p>
+  <nav class="fixed-top navbar navbar-expand-lg navbar-light" id="header_nav">
+    <a class="navbar-brand" href="#">
+      <span>
+        <i class="fas fa-clinic-medical"></i>
+        <span class="pl-2">Przychodnia</span>
+      </span>
+    </a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_nav_collapse">
+    <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse show" id="header_nav_collapse">
+      <form class="form mx-auto" id="header_search">
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control mr-sm-2" placeholder="Szukaj...">
+        </div>
+      </form>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item popover-profile">
+          <a class="nav-link" href="#">
+            <span class="pr-2">Bob Rose</span>
+            <i class="fas fa-user-md" title="Lekarz"></i>
+            <!-- <i class="fas fa-vial" title="Laborant"></i>
+            <i class="fas fa-microscope" title="Kierownik Laboratorium"></i>
+            <i class="fas fa-user-nurse" title="Rejestratorka"></i> -->
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="sidebar">
+    <div class="left-panel">
+
+      <ul class="list-group">
+        <li class="list-group-item active d-flex justify-content-between align-items-center">
+          <span>
+            <i class="fas fa-tachometer-alt"></i>
+            <a href="#">Panel główny</a>
+          </span>
+          <span class="badge badge-primary">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="far fa-check-square"></i>
+            <a href="#">Wizyty</a>
+          </span>
+          <span class="badge badge-primary">2</span>
+        </li>
+        <li class="list-group-item header d-flex justify-content-between align-items-center">
+          <span>
+            pacjenci
+          </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="far fa-user"></i>
+            <a href="#">Pacjenci</a>
+          </span>
+          <span class="badge badge-primary">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="fas fa-chart-pie"></i>
+            <a href="#">Analityka</a>
+          </span>
+          <span class="badge badge-primary">1</span>
+        </li>
+        <li class="list-group-item header d-flex justify-content-between align-items-center">
+          <span>
+            ustawienia
+          </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="fas fa-cog"></i>
+            <a href="#">Ustawienia</a>
+          </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="fas fa-sign-out-alt"></i>
+            <a href="#">Wyloguj</a>
+          </span>
+        </li>
+      </ul>
+
+    </div>
+    <div class="main-content pt-5">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="toast main-toast main-toast-primary" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <i class="fas fa-comment-medical"></i>
+                <strong class="mr-auto pl-2">Przychodnia</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="toast-body">
+                Pacjent został dodany poprawnie.
+              </div>
+            </div>
+
+
+
+            <h1>Header</h1>
+            <h2>Header</h2>
+            <h3>Header</h3>
+            <h4>Header</h4>
+            <h5>Header</h5>
+            <h6>Header</h6>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+              deserunt mollit anim id est laborum.
+            </p>
+
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-secondary">Secondary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-danger">Danger</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-light">Light</span>
+            <span class="badge badge-dark">Dark</span>
+
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+
+
+
+            <form class="custom">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault01">First name</label>
+      <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault02">Last name</label>
+      <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefaultUsername">Username</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend2">@</span>
+        </div>
+        <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault03">City</label>
+      <input type="text" class="form-control" id="validationDefault03" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault04">State</label>
+      <select class="custom-select" id="validationDefault04" required>
+        <option selected disabled value="">Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault05">Zip</label>
+      <input type="text" class="form-control" id="validationDefault05" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+      <label class="form-check-label" for="invalidCheck2">
+        Agree to terms and conditions
+      </label>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+
+  <div class="form-group mt-5">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
   </body>
 </html>

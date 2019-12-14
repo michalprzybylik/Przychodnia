@@ -34,7 +34,7 @@ class Wizyta(models.Model):
         ("ZAK", "Zakończona"),
         ("ANUL", "Anulowana")
     )
-    opis = models.TextField()
+    opis = models.TextField(null=True, blank=True)
     diagnoza = models.TextField()
     status = models.CharField(null=False, choices=STATUS, max_length=4, default="REJ")
     dt_rej = models.DateTimeField(auto_now_add=True)

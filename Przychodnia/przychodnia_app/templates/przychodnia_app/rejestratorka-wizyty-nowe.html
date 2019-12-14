@@ -2,7 +2,7 @@
 {% block title %}Rejestracja{% endblock %}
 {% block content %}
 
-<h4 class="mt-4">Nowe wizyty</h4>
+<h4><i class="far fa-check-square"></i>&nbsp;Nowe wizyty</h4>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -36,31 +36,6 @@
     {% endfor %}
   </tbody>
 </table>
-<h4>Stare wizyty</h4>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Pacjent</th>
-      <th scope="col">Lekarz</th>
-      <th scope="col">Zarejestrowano</th>
-      <th scope="col">Akcje</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for wizyta in stare_wizyty %}
-    <tr>
-      <td>{{wizyta.pacjent}}</td>
-      <td>{{wizyta.lekarz}}</td>
-      <td>{{wizyta.dt_rej}}</td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="4" class="text-center">
-        -Brak-
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
 
 {% endblock %}

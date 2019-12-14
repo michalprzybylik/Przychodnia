@@ -1,0 +1,26 @@
+// toast
+
+.main-toast {
+  position: absolute;
+  top: 4rem;
+  left: 19rem;
+  z-index: 9999;
+  &-primary {
+    & .toast-header {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+  &-warning {
+    & .toast-header {
+      background-color: $warning;
+      color: $white;
+    }
+  }
+  &-danger {
+    & .toast-header {
+      background-color: $danger;
+      color: $black;
+    }
+  }
+}

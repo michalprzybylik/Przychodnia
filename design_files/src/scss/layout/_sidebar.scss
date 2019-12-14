@@ -1,0 +1,73 @@
+// sidebar
+
+#sidebar {
+  .left-panel {
+    position: fixed;
+    box-shadow: 1px 2px 3px lightgrey;
+    z-index: 2;
+    height: 100vh;
+    background-color: $white;
+    .list-group {
+      background-color: $white;
+      .list-group-item {
+        color: $c-text-paragraph;
+        cursor: pointer;
+        border-radius: 0;
+        border: none;
+        & a {
+          color: $c-text-paragraph!important;
+        }
+        & span > i {
+          margin-right: 1rem;
+        }
+        &:hover {
+          background-color: $gray-100;
+        }
+        &.header {
+          text-transform: uppercase;
+          &:hover {
+            background-color: $white;
+            cursor: default;
+          }
+        }
+        &.active {
+          background-color: $gray-100;
+          & span > i {
+            color: $primary;
+            border-bottom: 3px solid $primary;
+            padding-bottom: 0.1rem;
+          }
+          & span:first-child {
+            font-weight: bold;
+            color: $c-text-header;
+          }
+        }
+      }
+    }
+    width: 20vw!important;
+    @media(max-width: map-get($grid-breakpoints, "lg")) {
+      width: 25vw!important;
+    }
+    @media(max-width: map-get($grid-breakpoints, "md")) {
+      width: 50vw!important;
+    }
+    @media(max-width: map-get($grid-breakpoints, "sm")) {
+      width: 100vw!important;
+    }
+  }
+  .main-content {
+    float: right;
+    background-color: $white;
+    height: 100vh;
+    width: 77vw!important;
+    @media(max-width: map-get($grid-breakpoints, "lg")) {
+      width: 75vw!important;
+    }
+    @media(max-width: map-get($grid-breakpoints, "md")) {
+      width: 50vw!important;
+    }
+    @media(max-width: map-get($grid-breakpoints, "sm")) {
+      width: 100vw!important;
+    }
+  }
+}

@@ -6,9 +6,14 @@ app_name = "przychodnia_app"
 
 urlpatterns = [
     path(
-        "rejestratorka/",
-        views.RejestratorkaDashboard.as_view(),
-        name="rejestratorka-dashboard"
+        "rejestratorka/wizyty-nowe",
+        views.RejestratorkaWizytyNowe.as_view(),
+        name="rejestratorka-wizyty-nowe"
+    ),
+    path(
+        "rejestratorka/wizyty-stare",
+        views.RejestratorkaWizytyStare.as_view(),
+        name="rejestratorka-wizyty-stare"
     ),
     path(
         "rejestratorka/rejestruj-wizyte/",
@@ -24,6 +29,11 @@ urlpatterns = [
         "rejestratorka/dodaj-adres/",
         views.AdresCreate.as_view(),
         name="rejestratorka-dodaj-adres"
+    ),
+    path(
+        "rejestratorka/pacjenci/",
+        views.PacjentRejestratorkaList.as_view(),
+        name="rejestratorka-pacjenci-list"
     ),
     path(
         "lekarz/",

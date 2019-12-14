@@ -1,0 +1,8 @@
+{
+  "app.css": "app.css",
+  "app.js": "app.bundle.js",
+  "fonts/main.scss": "./fonts/fa-solid-900.woff2",
+  "images/main.scss": "./images/fa-solid-900.svg",
+  "about.html": "about.html",
+  "index.html": "index.html"
+}

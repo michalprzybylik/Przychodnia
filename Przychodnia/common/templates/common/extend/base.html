@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block head %}{% endblock head %}
+    <title>Przychodnia - {% block title %}{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/select2.min.js' %}"></script></body> -->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <body>
+  <!-- Navbar Start -->
+  <nav class="fixed-top navbar navbar-expand-lg navbar-light" id="header_nav">
+    <a class="navbar-brand">
+      <span>
+        <i class="fas fa-clinic-medical"></i>
+        <span class="pl-2">Przychodnia</span>
+      </span>
+    </a>
+    <div class="collapse navbar-collapse show" id="header_nav_collapse">
+      <form class="form mx-auto" id="header_search">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control mr-sm-2" placeholder="Szukaj...">
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto">
+        {% if user.role == "REJ" %}
+        <li class="nav-item popover-profile-rejestratorka">
+        {% else %}
+        <li class="nav-item popover-profile">
+        {% endif %}
+          <a class="nav-link" href="#">
+            <span class="pr-2">{{user}}</span>
+            {% if user.role == "REJ" %}
+              <i class="fas fa-user-nurse" title="Rejestratorka"></i>
+            {% elif user.role == "REJ" %}
+              <i class="fas fa-user-md" title="Lekarz"></i>
+            {% endif %}
+            <!-- <i class="fas fa-vial" title="Laborant"></i>
+            <i class="fas fa-microscope" title="Kierownik Laboratorium"></i>
+            <i class="fas fa-user-nurse" title="Rejestratorka"></i> -->
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+  <div id="sidebar">
+    {% block left_panel %}{% endblock %}
+    <div class="main-content pt-5">
+      <div class="container">
+          {% include 'common/include/messages.html' %}
+          {% block child_content %}{% endblock %}
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.select2-select').select2();
+  });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+{% block under_body %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/app.bundle.js' %}"></script></body>
+</html>

@@ -4,6 +4,7 @@
 // 1. Config and Helpers
 // Should not output a single line of CSS when compiled on its own.
 @import
+  "abstracts/bootstrap_variables",
   "abstracts/variables",
   "abstracts/mixins",
   "abstracts/functions";
@@ -20,12 +21,14 @@
   "layout/forms",
   "layout/grid",
   "layout/header",
+  "layout/sidebar",
   "layout/navigation";
 
 // 4. Components
 @import
   "components/carousel",
   "components/media",
+  "components/toast",
   "components/thumbnail";
 
 // 5. Page-specific stlyes
@@ -41,4 +44,5 @@
 // 7. Vendors & Vendors Extensions
 @import
   "vendors/bootstrap",
+  "vendors/fontawesome",
   "vendors-extensions/bootstrap";
