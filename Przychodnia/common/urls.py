@@ -15,4 +15,9 @@ urlpatterns = [
         views.Logout.as_view(),
         name="logout"
     ),
+    path(
+        "",
+        views.RedirectToLoginPage.as_view(),
+        name="homepage"
+    ),
 ]

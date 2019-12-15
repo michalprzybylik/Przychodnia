@@ -1,8 +1,11 @@
 {% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Stare wizyty{% endblock %}
 {% block content %}
 
-<h4><i class="far fa-check-square"></i>&nbsp;Stare wizyty</h4>
+<h4><i class="far fa-minus-square"></i>&nbsp;Stare wizyty</h4>
+<p>
+  Wizyty zarejestrowane więcej niż 12 godzin temu. (Wymagane ręczne anulowanie)
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,6 +21,14 @@
       <td>{{wizyta.pacjent}}</td>
       <td>{{wizyta.lekarz}}</td>
       <td>{{wizyta.dt_rej}}</td>
+      <td>
+        <a class="btn btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
+          <i class="far fa-eye"></i>
+        </a>
+        <a class="btn btn-danger" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
+          <i class="fas fa-ban"></i>
+        </a>
+      </td>
     </tr>
     {% empty %}
     <tr>

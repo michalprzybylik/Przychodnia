@@ -1,8 +1,11 @@
 {% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Nowe wizyty{% endblock %}
 {% block content %}
 
 <h4><i class="far fa-check-square"></i>&nbsp;Nowe wizyty</h4>
+<p>
+  Dzisiejsze zarejestrowane wizyty.
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -19,7 +22,7 @@
       <td>{{wizyta.lekarz}}</td>
       <td>{{wizyta.dt_rej}}</td>
       <td>
-        <a class="btn btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
+        <a href="{% url 'przychodnia_app:wizyta-detail' pk=wizyta.pk %}" class="btn btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
           <i class="far fa-eye"></i>
         </a>
         <a class="btn btn-danger" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">

@@ -1,0 +1,26 @@
+<nav class="m-0 p-0">
+  <div class="d-flex flex-row-reverse">
+    <div>
+      <ul class="pagination pagination-sm justify-content-end">
+        <li class="page-item px-1">
+          {% if page_obj.has_previous %}
+          <a href="./?page={{page_obj.number|add:-1}}" class="text-decoration-none p-2">
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          {% endif %}
+          Strona
+        </li>
+        <li class="page-item px-1">{{page_obj.number}}</li>
+        <li class="page-item px-1">z</li>
+        <li class="page-item px-1">
+            {{paginator.num_pages}}
+            {% if page_obj.has_next %}
+            <a href="./?page={{page_obj.number|add:1}}" class="text-decoration-none p-2">
+              <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

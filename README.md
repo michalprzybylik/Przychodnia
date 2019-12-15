@@ -9,8 +9,13 @@ Python3, Django
 - jquery ^3.4.1
 - popper.js ^1.16.0
 
+## Passy
+- superużytkownik: admin / admin
+- rejestratorka: rejestratorka / 123456789
+- lekarz: lekarz / 123456789
+
 ## ToDo
-- usunąć pole Opis z widoku rejestratorki
+[x] usunąć pole Opis z widoku rejestratorki
 
 ## Opis
 

@@ -49,7 +49,7 @@
     <li class="list-group-item {% if request.resolver_match.url_name == 'rejestratorka-pacjenci-list' %}active{% endif %} d-flex justify-content-between align-items-center">
       <span>
         <i class="far fa-user"></i>
-        <a href="{% url 'przychodnia_app:rejestratorka-pacjenci-list' %}">Pacjenci</a>
+        <a href="{% url 'przychodnia_app:pacjenci-list' %}">Pacjenci</a>
       </span>
       {% if pacjenci_count %}
       <span class="badge badge-primary">{{pacjenci_count}}</span>

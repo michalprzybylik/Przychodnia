@@ -1,0 +1,76 @@
+{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% block title %}Wizyta - szczegóły{% endblock %}
+{% block content %}
+<h4><i class="far fa-minus-square"></i>&nbsp;Wizyta (ID={{wizyta.pk}})</h4>
+<p class="my-0">
+  Zarejestrowano: <b>{{wizyta.dt_rej}}</b> przez <b>{{wizyta.rejestratorka}}</b>
+</p>
+<p class="my-0">
+  Status:
+  <b>
+  {% if wizyta.status == "REJ" %}
+  Zarejestrowana
+    {% elif wizyta.status == "ZAK" %}
+  Zakończona
+    {% elif wizyta.status == "ANUL" %}
+  Anulowana
+  {% endif %}
+  </b>
+</p>
+
+
+<div class="d-flex flex-row-reverse">
+  <div class="pr-5">
+    <a class="btn btn-danger" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
+      <i class="fas fa-ban"></i>
+    </a>
+  </div>
+</div>
+
+<div class="list-group flex-row mt-3">
+  <a href="#" class="list-group-item border-0 list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Lekarz</h5>
+    </div>
+    <p class="mb-1">
+      {{wizyta.lekarz.imie}} {{wizyta.lekarz.nazwisko}}
+    </p>
+    <small>NPWZ: {{wizyta.lekarz.npwz}}</small>
+  </a>
+  <a href="#" class="list-group-item border-0 list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Pacjent</h5>
+    </div>
+    <p class="mb-1">
+      {{wizyta.pacjent.imie}} {{wizyta.pacjent.nazwisko}}
+    </p>
+    <small>
+      {{wizyta.pacjent.pesel}}
+    </small>
+    <br>
+    <small>
+      {{wizyta.pacjent.adres}}
+    </small>
+  </a>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+</div>
+
+<!--
+opis
+diagnoza
+status
+dt_rej
+dt_zak_anul
+pacjent
+rejestratorka
+lekarz
+-->
+
+{% endblock %}

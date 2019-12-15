@@ -5,6 +5,9 @@ from przychodnia_app import views
 app_name = "przychodnia_app"
 
 urlpatterns = [
+    ###################################################
+    # Rejestratorka
+    ###################################################
     path(
         "rejestratorka/wizyty-nowe",
         views.RejestratorkaWizytyNowe.as_view(),
@@ -17,27 +20,38 @@ urlpatterns = [
     ),
     path(
         "rejestratorka/rejestruj-wizyte/",
-        views.WizytaCreate.as_view(),
+        views.RejestratorkaWizytaDodaj.as_view(),
         name="rejestratorka-rejestruj-wizyte"
     ),
     path(
         "rejestratorka/dodaj-pacjenta/",
-        views.PacjentCreate.as_view(),
+        views.RejestratorkaPacjentDodaj.as_view(),
         name="rejestratorka-dodaj-pacjenta"
     ),
     path(
         "rejestratorka/dodaj-adres/",
-        views.AdresCreate.as_view(),
+        views.RejestratorkaAdresDodaj.as_view(),
         name="rejestratorka-dodaj-adres"
     ),
+    ###################################################
+    # Lekarz
+    ###################################################
+    path(
+        "lekarz/moje-wizyty",
+        views.LekarzDashboard.as_view(),
+        name="lekarz-moje-wizyty"
+    ),
+    ###################################################
+    # Wspólne
+    ###################################################
     path(
         "rejestratorka/pacjenci/",
-        views.PacjentRejestratorkaList.as_view(),
-        name="rejestratorka-pacjenci-list"
+        views.PacjentLista.as_view(),
+        name="pacjenci-list"
     ),
     path(
-        "lekarz/",
-        views.LekarzDashboard.as_view(),
-        name="lekarz-dashboard"
+        "rejestratorka/wizyta/<int:pk>/",
+        views.RejestratorkaWizytaDetail.as_view(),
+        name="wizyta-detail"
     ),
 ]
