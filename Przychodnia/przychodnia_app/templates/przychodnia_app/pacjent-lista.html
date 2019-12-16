@@ -5,6 +5,11 @@
 
 <h4><i class="far fa-user"></i>&nbsp;Pacjenci</h4>
 {% include 'przychodnia_app/include/pagination.html' %}
+
+<a href="{% url 'przychodnia_app:rejestratorka-dodaj-pacjenta' %}"><i class="fas fa-user-plus"></i>
+                &nbsp;Wprowadź nowego pacjenta
+              </a>
+
 <table class="table table-striped">
   <thead>
     <tr>
