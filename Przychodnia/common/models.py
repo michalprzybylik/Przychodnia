@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 
 class CommonProfileModel(models.Model):
-    imie = models.CharField("Imie", max_length=32)
+    imie = models.CharField("Imię", max_length=32)
     nazwisko = models.CharField("Nazwisko", max_length=32)
 
     def __str__(self):
