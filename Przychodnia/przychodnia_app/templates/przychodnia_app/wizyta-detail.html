@@ -21,7 +21,7 @@
 
 <div class="d-flex flex-row-reverse">
   <div class="pr-5">
-    <a class="btn btn-danger" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
+    <a class="btn btn-danger" href="{% url 'przychodnia_app:rejestratorka-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
       <i class="fas fa-ban"></i>
     </a>
   </div>
