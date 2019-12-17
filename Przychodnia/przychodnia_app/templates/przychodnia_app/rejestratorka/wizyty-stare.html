@@ -22,10 +22,10 @@
       <td>{{wizyta.lekarz}}</td>
       <td>{{wizyta.dt_rej}}</td>
       <td>
-        <a class="btn btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
+        <a class="btn btn-primary" href="{% url 'przychodnia_app:wizyta-detail' pk=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
           <i class="far fa-eye"></i>
         </a>
-        <a class="btn btn-danger" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
+        <a class="btn btn-danger" href="{% url 'przychodnia_app:rejestratorka-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
           <i class="fas fa-ban"></i>
         </a>
       </td>

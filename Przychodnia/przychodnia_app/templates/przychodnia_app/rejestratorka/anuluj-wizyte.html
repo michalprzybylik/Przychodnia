@@ -1,0 +1,59 @@
+{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% block title %}Stare wizyty{% endblock %}
+{% block content %}
+
+<h4 class="text-danger"><i class="fas fa-ban"></i>&nbsp;Anuluj wizyte (ID={{wizyta.pk}})</h4>
+
+<p class="my-0">
+  Zarejestrowano: <b>{{wizyta.dt_rej}}</b> przez <b>{{wizyta.rejestratorka}}</b>
+</p>
+<p class="my-0">
+  Status:
+  <b>
+  {% if wizyta.status == "REJ" %}
+  Zarejestrowana
+    {% elif wizyta.status == "ZAK" %}
+  Zakończona
+    {% elif wizyta.status == "ANUL" %}
+  Anulowana
+  {% endif %}
+  </b>
+</p>
+
+<div class="list-group flex-row mt-3">
+  <a href="#" class="list-group-item border-0 list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Lekarz</h5>
+    </div>
+    <p class="mb-1">
+      {{wizyta.lekarz.imie}} {{wizyta.lekarz.nazwisko}}
+    </p>
+    <small>NPWZ: {{wizyta.lekarz.npwz}}</small>
+  </a>
+  <a href="#" class="list-group-item border-0 list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Pacjent</h5>
+    </div>
+    <p class="mb-1">
+      {{wizyta.pacjent.imie}} {{wizyta.pacjent.nazwisko}}
+    </p>
+    <small>
+      {{wizyta.pacjent.pesel}}
+    </small>
+    <br>
+    <small>
+      {{wizyta.pacjent.adres}}
+    </small>
+  </a>
+</div>
+
+
+<form action="./" method="post">
+  {% csrf_token %}
+  <p>
+    Czy na pewno chcesz anulować wizytę?
+  </p>
+  <button class="btn btn-danger" type="submit">Tak</button>
+</form>
+
+{% endblock %}

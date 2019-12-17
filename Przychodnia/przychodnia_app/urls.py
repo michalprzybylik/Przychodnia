@@ -33,6 +33,11 @@ urlpatterns = [
         views.RejestratorkaAdresDodaj.as_view(),
         name="rejestratorka-dodaj-adres"
     ),
+    path(
+        "rejestratorka/anuluj-wizyte/<int:wizyta_id>/",
+        views.RejestratorkaAnulujWizyte.as_view(),
+        name="rejestratorka-anuluj-wizyte"
+    ),
     ###################################################
     # Lekarz
     ###################################################
