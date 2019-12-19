@@ -1,4 +1,4 @@
-{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
 {% block title %}Wizyta - szczegóły{% endblock %}
 {% block content %}
 <h4><i class="far fa-minus-square"></i>&nbsp;Wizyta (ID={{wizyta.pk}})</h4>
@@ -21,7 +21,7 @@
 
 <div class="d-flex flex-row-reverse">
   <div class="pr-5">
-    <a class="btn btn-danger" href="{% url 'przychodnia_app:rejestratorka-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
+    <a class="btn btn-danger" href="{% url 'przychodnia_app:przychodnia-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
       <i class="fas fa-ban"></i>
     </a>
   </div>

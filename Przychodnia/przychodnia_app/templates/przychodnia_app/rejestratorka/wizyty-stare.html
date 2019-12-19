@@ -1,4 +1,4 @@
-{% extends 'przychodnia_app/extend/base_rejestratorka.html' %}
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
 {% block title %}Stare wizyty{% endblock %}
 {% block content %}
 
@@ -22,12 +22,7 @@
       <td>{{wizyta.lekarz}}</td>
       <td>{{wizyta.dt_rej}}</td>
       <td>
-        <a class="btn btn-primary" href="{% url 'przychodnia_app:wizyta-detail' pk=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły">
-          <i class="far fa-eye"></i>
-        </a>
-        <a class="btn btn-danger" href="{% url 'przychodnia_app:rejestratorka-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
-          <i class="fas fa-ban"></i>
-        </a>
+        {% include 'przychodnia_app/include/action_buttons_common.html' %}
       </td>
     </tr>
     {% empty %}

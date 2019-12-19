@@ -1,5 +1,47 @@
-{% extends 'przychodnia_app/extend/base_lekarz.html' %}
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
 {% block title %}Lekarz{% endblock %}
 {% block content %}
-lekarz
+
+
+<h4><i class="fas fa-user-md"></i>&nbsp;Moje wizyty</h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Pacjent</th>
+      <!-- <th scope="col">Lekarz</th> -->
+      <th scope="col">Zarejestrowano</th>
+      <th scope="col">Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for wizyta in moje_wizyty %}
+    <tr>
+      <td>
+        {{wizyta.pacjent}}
+
+        {% if wizyta.is_old %}
+          <i class="fas fa-exclamation-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Ta wizyta powinna być anulowana!"></i>
+        {% endif %}
+      </td>
+      <!-- <td>{{wizyta.lekarz}}</td> -->
+      <td>{{wizyta.dt_rej}}</td>
+      <td>
+        <a class="btn btn-success" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Zrealizuj wizytę">
+          <i class="fas fa-notes-medical"></i>
+        </a>
+        {% include 'przychodnia_app/include/action_buttons_common.html' %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">
+        -Brak-
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
 {% endblock %}

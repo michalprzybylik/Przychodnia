@@ -33,11 +33,6 @@ urlpatterns = [
         views.RejestratorkaAdresDodaj.as_view(),
         name="rejestratorka-dodaj-adres"
     ),
-    path(
-        "rejestratorka/anuluj-wizyte/<int:wizyta_id>/",
-        views.RejestratorkaAnulujWizyte.as_view(),
-        name="rejestratorka-anuluj-wizyte"
-    ),
     ###################################################
     # Lekarz
     ###################################################
@@ -46,17 +41,27 @@ urlpatterns = [
         views.LekarzDashboard.as_view(),
         name="lekarz-moje-wizyty"
     ),
+    path(
+        "lekarz/moje-zakonczone-wizyty",
+        views.LekarzZakonczoneWizyty.as_view(),
+        name="lekarz-moje-zakonczone-wizyty"
+    ),
     ###################################################
-    # Wspólne
+    # Wspólne (przychodnia)
     ###################################################
     path(
-        "rejestratorka/pacjenci/",
-        views.PacjentLista.as_view(),
-        name="pacjenci-list"
+        "anuluj-wizyte/<int:wizyta_id>/",
+        views.PrzychodniaAnulujWizyte.as_view(),
+        name="przychodnia-anuluj-wizyte"
     ),
     path(
-        "rejestratorka/wizyta/<int:pk>/",
-        views.RejestratorkaWizytaDetail.as_view(),
-        name="wizyta-detail"
+        "pacjenci/",
+        views.PrzychodniaPacjentLista.as_view(),
+        name="przychodnia-pacjenci-list"
+    ),
+    path(
+        "wizyta/<int:pk>/",
+        views.PrzychodniaWizytaDetail.as_view(),
+        name="przychodnia-wizyta-detail"
     ),
 ]

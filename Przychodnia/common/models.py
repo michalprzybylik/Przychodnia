@@ -8,7 +8,7 @@ class User(AbstractUser):
         ('REJ', 'REJESTRATORKA'),
         ('LEK', 'LEKARZ'),
         ('LAB', 'LABORANT'),
-        ('KLAB', 'KIEROWNIK LABORATORIUM') 
+        ('KLAB', 'KIEROWNIK LABORATORIUM')
     )
     role = models.CharField(null=True, max_length=16, choices=ROLES)
 

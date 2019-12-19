@@ -83,17 +83,3 @@ class RejestratorkaAdresDodaj(CreateView):
     def get_success_url(self):
         messages.success(self.request, 'Adres dodany poprawnie')
         return reverse("przychodnia_app:rejestratorka-dodaj-pacjenta")
-
-
-class RejestratorkaAnulujWizyte(View):
-    template_name = "przychodnia_app/rejestratorka/anuluj-wizyte.html"
-    def get(self, request, wizyta_id):
-        wizyta = get_object_or_404(Wizyta, pk=wizyta_id)
-        return render(request, self.template_name, {"wizyta": wizyta})
-
-    def post(self, request, wizyta_id):
-        wizyta = get_object_or_404(Wizyta, pk=wizyta_id)
-        wizyta.dt_zak_anul = timezone.now()
-        wizyta.status = "ANUL"
-        wizyta.save()
-        return redirect(reverse("przychodnia_app:rejestratorka-wizyty-stare"))

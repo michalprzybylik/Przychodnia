@@ -18,6 +18,12 @@ class WizytaQuerySet(models.QuerySet):
         return self.filter(
             Q(status='REJ') & Q(dt_rej__gte=timezone.now() - timedelta(hours=12)))
 
+    def filter_by_lekarz(self, user, typ):
+        return self.filter(
+            Q(status=typ) & Q(lekarz=user))
+
+
+
 class WizytaManager(models.Manager):
     def get_queryset(self):
         return WizytaQuerySet(self.model, using=self._db)
@@ -27,6 +33,9 @@ class WizytaManager(models.Manager):
 
     def get_new(self):
         return self.get_queryset().get_new()
+
+    def filter_by_lekarz(self, user, typ="REJ"):
+        return self.get_queryset().filter_by_lekarz(user, typ)
 
 class Wizyta(models.Model):
     STATUS = (
@@ -46,6 +55,12 @@ class Wizyta(models.Model):
 
     wizyty = WizytaManager()
 
+    @property
+    def is_old(self): # czy wizyta jest 'stara'
+        ret = self.status=='REJ'
+        ret = ret and (self.dt_rej <= timezone.now() - timedelta(hours=12))
+        return ret
+
     class Meta:
-        ordering = ["-dt_rej"]
+        ordering = ["dt_rej"]
         verbose_name_plural = "Wizyty"

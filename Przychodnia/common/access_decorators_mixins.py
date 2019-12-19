@@ -31,7 +31,7 @@ def uprawniania_lekarz_wymagane(function):
     return wrap
 
 
-def uprawniania_przegladanie_listy_pacjentow(function):
+def uprawnienia_wspolne_lekarz_rejestratorka(function):
     def wrap(request, *args, **kwargs):
         conditions = [
             request.user.role == 'REJ',
