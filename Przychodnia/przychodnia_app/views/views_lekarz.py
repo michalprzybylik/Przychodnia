@@ -43,3 +43,20 @@ class LekarzZakonczoneWizyty(View):
         return render(request, self.template_name, {
             "zakonczone_wizyty": zakonczone_wizyty
         })
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
+class LekarzRealizujWizyte(View):
+    template_name = "przychodnia_app/lekarz/realizuj-wizyte.html"
+    def get(self, request, wizyta_id):
+        ja = lekarz_by_request(request)
+        realizowana_wizyta = get_object_or_404(Wizyta, id=wizyta_id, status="REJ")
+        inne_wizyty_pacjenta = Wizyta.wizyty.inne_wizyty_pacjenta(
+            realizowana_wizyta
+        )
+        context = {
+            "realizowana_wizyta": realizowana_wizyta,
+            "inne_wizyty_pacjenta": inne_wizyty_pacjenta,
+        }
+        return render(request, self.template_name, context)

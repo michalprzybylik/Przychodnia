@@ -46,6 +46,11 @@ urlpatterns = [
         views.LekarzZakonczoneWizyty.as_view(),
         name="lekarz-moje-zakonczone-wizyty"
     ),
+    path(
+        "lekarz/wizyta/<int:wizyta_id>/realizuj",
+        views.LekarzRealizujWizyte.as_view(),
+        name="lekarz-realizuj-wizyte"
+    ),
     ###################################################
     # Wspólne (przychodnia)
     ###################################################

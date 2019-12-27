@@ -5,25 +5,11 @@
 <p class="my-0">
   Zarejestrowano: <b>{{wizyta.dt_rej}}</b> przez <b>{{wizyta.rejestratorka}}</b>
 </p>
-<p class="my-0">
-  Status:
-  <b>
-  {% if wizyta.status == "REJ" %}
-  Zarejestrowana
-    {% elif wizyta.status == "ZAK" %}
-  Zakończona
-    {% elif wizyta.status == "ANUL" %}
-  Anulowana
-  {% endif %}
-  </b>
-</p>
-
+{% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
 
 <div class="d-flex flex-row-reverse">
   <div class="pr-5">
-    <a class="btn btn-danger" href="{% url 'przychodnia_app:przychodnia-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
-      <i class="fas fa-ban"></i>
-    </a>
+    {% include 'przychodnia_app/include/anuluj_wizyte.html' with wizyta=wizyta %}
   </div>
 </div>
 

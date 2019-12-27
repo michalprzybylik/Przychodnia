@@ -1,0 +1,83 @@
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
+{% block title %}Realizuj wizyte {{realizowana_wizyta.id}}{% endblock %}
+{% block content %}
+
+{% with realizowana_wizyta as wizyta %}
+<h4>
+  <i class="fas fa-notes-medical"></i>
+  &nbsp;Realizacja wizyty (ID={{wizyta.id}})
+</h4>
+<p class="my-0">
+  Zarejestrowano: <b>{{wizyta.dt_rej}}</b>
+  przez <b>{{wizyta.rejestratorka}}</b>
+</p>
+{% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
+<div class="d-flex flex-row-reverse">
+  <div class="pr-5">
+    {% include 'przychodnia_app/include/anuluj_wizyte.html' with wizyta=wizyta %}
+  </div>
+  <div class="pr-5">
+    <a href="#" class="btn btn-primary">
+      <i class="fas fa-vial"></i>
+      &nbsp;Zleć badanie laboratoryjne
+    </a>
+  </div>
+</div>
+
+
+<div class="list-group flex-row mt-3">
+  <a class="list-group-item border-0 list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Pacjent</h5>
+    </div>
+    <p class="mb-1">
+      {{wizyta.pacjent.imie}} {{wizyta.pacjent.nazwisko}}
+    </p>
+    <small>
+      {{wizyta.pacjent.pesel}}
+    </small>
+    <br>
+    <small>
+      {{wizyta.pacjent.adres}}
+    </small>
+  </a>
+</div>
+{% endwith %}
+
+<h4>
+  <i class="fas fa-notes-medical mt-5"></i>
+  &nbsp;Inne wizyty pacjenta
+</h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Zarejestrowano</th>
+      <th scope="col">Lekarz</th>
+      <th scope="col">Status</th>
+      <th scope="col">Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inna_wizyta in inne_wizyty_pacjenta %}
+    <tr>
+      <td>{{inna_wizyta.dt_rej}}</td>
+      <td>{{inna_wizyta.lekarz}}</td>
+      <td>
+        {% include 'przychodnia_app/include/wizyta_status_text.html' with wizyta=inna_wizyta %}
+      </td>
+      <td>
+        {% include 'przychodnia_app/include/action_buttons_common.html' with wizyta=inna_wizyta %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">
+        -Brak-
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

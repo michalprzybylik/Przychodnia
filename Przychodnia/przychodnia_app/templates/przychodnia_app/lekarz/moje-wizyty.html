@@ -27,7 +27,7 @@
       <!-- <td>{{wizyta.lekarz}}</td> -->
       <td>{{wizyta.dt_rej}}</td>
       <td>
-        <a class="btn btn-success" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Zrealizuj wizytę">
+        <a class="btn btn-success" href="{% url 'przychodnia_app:lekarz-realizuj-wizyte' wizyta_id=wizyta.id %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Zrealizuj wizytę">
           <i class="fas fa-notes-medical"></i>
         </a>
         {% include 'przychodnia_app/include/action_buttons_common.html' %}

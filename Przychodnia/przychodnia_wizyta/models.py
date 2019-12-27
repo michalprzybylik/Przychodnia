@@ -22,6 +22,8 @@ class WizytaQuerySet(models.QuerySet):
         return self.filter(
             Q(status=typ) & Q(lekarz=user))
 
+    def inne_wizyty_pacjenta(self, wizyta):
+        return self.filter(pacjent=wizyta.pacjent).exclude(id=wizyta.id)
 
 
 class WizytaManager(models.Manager):
@@ -36,6 +38,9 @@ class WizytaManager(models.Manager):
 
     def filter_by_lekarz(self, user, typ="REJ"):
         return self.get_queryset().filter_by_lekarz(user, typ)
+
+    def inne_wizyty_pacjenta(self, wizyta):
+        return self.get_queryset().inne_wizyty_pacjenta(wizyta)
 
 class Wizyta(models.Model):
     STATUS = (

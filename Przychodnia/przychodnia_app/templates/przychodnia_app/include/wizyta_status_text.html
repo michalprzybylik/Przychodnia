@@ -1,0 +1,7 @@
+{% if wizyta.status == "REJ" %}
+Zarejestrowana
+  {% elif wizyta.status == "ZAK" %}
+Zakończona
+  {% elif wizyta.status == "ANUL" %}
+Anulowana
+{% endif %}
