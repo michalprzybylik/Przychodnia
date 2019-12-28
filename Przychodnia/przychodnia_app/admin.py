@@ -11,3 +11,8 @@ class RejestratorkaAdmin(admin.ModelAdmin):
 @admin.register(models.Lekarz)
 class LekarzAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.BadanieFizykalne)
+class BadanieFizykalneAdmin(admin.ModelAdmin):
+    pass

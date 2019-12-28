@@ -1,0 +1,22 @@
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
+{% block title %}Realizuj wizyte {{realizowana_wizyta.id}}{% endblock %}
+{% block content %}
+
+{% with realizowana_wizyta as wizyta %}
+<a class="btn btn-outline-secondary btn-sm" href="{% url 'przychodnia_app:lekarz-realizuj-wizyte' wizyta_id=wizyta.id %}">
+  <i class="fas fa-angle-left"></i>
+  &nbsp;Powróć do realizowanej wizyty
+</a>
+{% endwith %}
+
+<h4 class="mt-4 mb-4">
+  <i class="fas fa-notes-medical"></i>
+  &nbsp;Zleć badanie laboratoryjne
+</h4>
+<p>
+  W ramach wizyty (ID={{realizowana_wizyta.id}}), pacjent: {{realizowana_wizyta.pacjent}}
+</p>
+
+{{form}}
+
+{% endblock %}

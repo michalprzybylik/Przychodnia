@@ -26,3 +26,16 @@ class CommonProfileModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class SlownikBadan(models.Model):
+    TYP_BAD = (
+        ('L', 'Laboratoryjne'),
+        ('F', 'Fizykalne'),
+    )
+    key = models.CharField(max_length=32, primary_key=True)
+    typ = models.CharField(max_length=1, choices=TYP_BAD)
+    nazwa = models.CharField(max_length=128)
+
+    class Meta:
+        verbose_name_plural = "Słownik Badań"

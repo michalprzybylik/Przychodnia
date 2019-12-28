@@ -9,3 +9,8 @@ class LaborantAdmin(admin.ModelAdmin):
 @admin.register(models.KierownikLabarotorium)
 class KierownikLabarotoriumAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.BadanieLaboratoryjne)
+class BadanieLaboratoryjneAdmin(admin.ModelAdmin):
+    pass

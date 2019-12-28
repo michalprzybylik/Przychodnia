@@ -1,7 +1,7 @@
 # BD2Projekt
 BD2Projekt - (RA2) System obsługi rezerwacji wizyt lekarskich
 ...
-Python3, Django
+Python3, Django 2.2.8
 
 ## Bundle
 - fontawesome-free ^5.12.0
@@ -16,6 +16,7 @@ Python3, Django
 
 ## ToDo
 [x] usunąć pole Opis z widoku rejestratorki
+[ ] wynik w modelu BadLab i BadFiz to bool czy text ?
 
 ## Opis
 

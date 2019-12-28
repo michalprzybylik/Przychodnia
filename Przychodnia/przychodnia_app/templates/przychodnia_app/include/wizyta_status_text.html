@@ -1,7 +1,7 @@
 {% if wizyta.status == "REJ" %}
 Zarejestrowana
   {% elif wizyta.status == "ZAK" %}
-Zakończona
+Zakończona dnia {{wizyta.dt_zak_anul}}
   {% elif wizyta.status == "ANUL" %}
-Anulowana
+Anulowana dnia {{wizyta.dt_zak_anul}}
 {% endif %}

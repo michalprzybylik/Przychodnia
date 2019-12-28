@@ -13,6 +13,7 @@ from common.access_decorators_mixins import uprawniania_lekarz_wymagane
 
 from przychodnia_wizyta.models import Wizyta
 from przychodnia_app.models import Lekarz
+from laboratorium_app.models import BadanieLaboratoryjne
 
 
 def lekarz_by_request(request):
@@ -50,13 +51,56 @@ class LekarzZakonczoneWizyty(View):
 class LekarzRealizujWizyte(View):
     template_name = "przychodnia_app/lekarz/realizuj-wizyte.html"
     def get(self, request, wizyta_id):
-        ja = lekarz_by_request(request)
+        # ja = lekarz_by_request(request)
         realizowana_wizyta = get_object_or_404(Wizyta, id=wizyta_id, status="REJ")
-        inne_wizyty_pacjenta = Wizyta.wizyty.inne_wizyty_pacjenta(
+        context = {
+            "realizowana_wizyta": realizowana_wizyta,
+        }
+        return render(request, self.template_name, context)
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
+class LekarzPrzegladajInneWizyty(ListView):
+    template_name = "przychodnia_app/lekarz/przegladaj-inne-wizyty.html"
+    paginate_by = 20
+    model = Wizyta
+    context_object_name = "inne_wizyty_pacjenta"
+    allow_empty = True
+
+    def get(self, request, *args, **kwargs):
+        realizowana_wizyta = get_object_or_404(
+            self.model, id=kwargs["wizyta_id"], status="REJ"
+        )
+        self.object_list = self.get_queryset(realizowana_wizyta)
+        context = self.get_context_data()
+        context = {
+            "realizowana_wizyta": realizowana_wizyta,
+            **context,
+        }
+        return self.render_to_response(context)
+
+    def get_queryset(self, realizowana_wizyta):
+        return self.model.wizyty.inne_wizyty_pacjenta(
             realizowana_wizyta
+        )
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
+class LekarzZlecBadanieLaboratoryjne(CreateView):
+    template_name = "przychodnia_app/lekarz/zlec-badanie-lab.html"
+    model = BadanieLaboratoryjne
+    fields = ['uwagi_lekarza', 'slownik']
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        wizyta_id = self.kwargs["wizyta_id"]
+        realizowana_wizyta = get_object_or_404(
+            Wizyta, id=wizyta_id, status="REJ"
         )
         context = {
             "realizowana_wizyta": realizowana_wizyta,
-            "inne_wizyty_pacjenta": inne_wizyty_pacjenta,
+            **context,
         }
-        return render(request, self.template_name, context)
+        return context
