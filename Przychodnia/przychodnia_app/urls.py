@@ -57,9 +57,9 @@ urlpatterns = [
         name="przegladaj-inne-wizyty-pacjenta"
     ),
     path(
-        "lekarz/wizyta/<int:wizyta_id>/realizuj/zlec-badanie-lab",
+        "lekarz/wizyta/<int:wizyta_id>/realizuj/zlec-badanie-lab/",
         views.LekarzZlecBadanieLaboratoryjne.as_view(),
-        name="zlec-badanie-lab"
+        name="lekarz-zlec-badanie-lab"
     ),
     ###################################################
     # Wspólne (przychodnia)

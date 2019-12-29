@@ -7,46 +7,92 @@
   <i class="fas fa-notes-medical"></i>
   &nbsp;Realizacja wizyty (ID={{wizyta.id}})
 </h4>
-<div class="list-group flex-row mt-3">
-  <a class="list-group-item border-0 list-group-item-action p-0 pt-3 pb-3">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Pacjent</h5>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="list-group flex-row mt-3">
+        <a class="list-group-item border-0 p-0 pt-3 pb-3">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Pacjent</h5>
+          </div>
+          <p class="mb-1">
+            {{wizyta.pacjent.imie}} {{wizyta.pacjent.nazwisko}}
+          </p>
+          <small>
+            {{wizyta.pacjent.pesel}}
+          </small>
+          <br>
+          <small>
+            {{wizyta.pacjent.adres}}
+          </small>
+        </a>
+      </div>
+      <p class="my-0">
+        Zarejestrowano: <b>{{wizyta.dt_rej}}</b>
+        przez <b>{{wizyta.rejestratorka}}</b>
+      </p>
+      {% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
     </div>
-    <p class="mb-1">
-      {{wizyta.pacjent.imie}} {{wizyta.pacjent.nazwisko}}
-    </p>
-    <small>
-      {{wizyta.pacjent.pesel}}
-    </small>
-    <br>
-    <small>
-      {{wizyta.pacjent.adres}}
-    </small>
-  </a>
-</div>
-<p class="my-0">
-  Zarejestrowano: <b>{{wizyta.dt_rej}}</b>
-  przez <b>{{wizyta.rejestratorka}}</b>
-</p>
-{% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
-<div class="d-flex flex-row-reverse">
-  <div class="pr-5">
-    {% include 'przychodnia_app/include/anuluj_wizyte.html' with wizyta=wizyta %}
-  </div>
-  <div class="pr-5">
-    <a href="{% url 'przychodnia_app:zlec-badanie-lab' wizyta_id=wizyta.id %}" class="btn btn-primary">
-      <i class="fas fa-vial"></i>
-      &nbsp;Zleć badanie laboratoryjne
-    </a>
+    <div class="col-md-6">
+      <a href="{% url 'przychodnia_app:lekarz-zlec-badanie-lab' wizyta_id=wizyta.id %}" class="btn btn-block btn-success btn-sm">
+        <i class="fas fa-stethoscope"></i>
+        &nbsp;Wykonaj badanie fizykalne
+      </a>
+      <a href="{% url 'przychodnia_app:lekarz-zlec-badanie-lab' wizyta_id=wizyta.id %}" class="btn btn-block btn-primary btn-sm">
+        <i class="fas fa-vial"></i>
+        &nbsp;Zleć badanie laboratoryjne
+      </a>
+      <a href="{% url 'przychodnia_app:przegladaj-inne-wizyty-pacjenta' wizyta_id=wizyta.id %}" class="btn btn-block btn-secondary btn-sm">
+        <i class="fas fa-notes-medical"></i>
+        &nbsp;Przeglądaj inne wizyty pacjenta
+      </a>
+      <a href="#" class="btn btn-block btn-secondary btn-sm">
+        <i class="fas fa-notes-medical"></i>
+        &nbsp;Przeglądaj badania pacjenta
+      </a>
+      <a class="btn btn-block btn-sm btn-danger" href="{% url 'przychodnia_app:przychodnia-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button">
+        <i class="fas fa-ban"></i>
+        &nbsp;Anuluj wizyte
+      </a>
+    </div>
   </div>
 </div>
 
-<a href="{% url 'przychodnia_app:przegladaj-inne-wizyty-pacjenta' wizyta_id=wizyta.id %}">
-  Przeglądaj inne wizyty pacjenta
-</a>
 
+{% if bad_lab_w_ramach_wizyty %}
+<hr>
+<h5>
+  <i class="fas fa-vial"></i>
+  &nbsp;Zlecone badania laboratoryjne w ramach tej wizyty
+</h5>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Data zlecenia</th>
+      <th scope="col">Status</th>
+      <th scope="col">Kod badania</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bad_lab in bad_lab_w_ramach_wizyty %}
+    <tr>
+      <td>{{bad_lab.dt_zlecenia}}</td>
+      <td>
+        {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
+      </td>
+      <td>
+        <span data-toggle="tooltip" data-placement="left" title="{{bad_lab.slownik.nazwa}}">
+          {{bad_lab.slownik.key}}
+        </span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
 
 {% endwith %}
-
-
 {% endblock %}

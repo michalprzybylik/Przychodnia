@@ -1,8 +1,7 @@
 from django.db import models
 
-from common.models import User
-
-from common.models import CommonProfileModel, SlownikBadan
+from common.models import User, CommonProfileModel, SlownikBadan
+from przychodnia_wizyta.models import Wizyta
 
 
 class Laborant(CommonProfileModel):
@@ -19,6 +18,23 @@ class KierownikLabarotorium(CommonProfileModel):
 
     class Meta:
         verbose_name_plural = "Kierownicy Laboratorium"
+
+
+
+class BadanieLaboratoryjneQuerySet(models.QuerySet):
+    def w_ramach_wizyty(self, wizyta):
+        return self.filter(
+            wizyta=wizyta.id
+        )
+
+
+class BadanieLaboratoryjneManager(models.Manager):
+    def get_queryset(self):
+        return BadanieLaboratoryjneQuerySet(self.model, using=self._db)
+
+    def w_ramach_wizyty(self, wizyta):
+        return self.get_queryset().w_ramach_wizyty(wizyta)
+
 
 class BadanieLaboratoryjne(models.Model):
     STATUS = (
@@ -42,6 +58,9 @@ class BadanieLaboratoryjne(models.Model):
     dt_zatw_anul_klab = models.DateTimeField(null=True)
     uwagi_kierownika = models.TextField(null=True, blank=True)
     slownik = models.ForeignKey(SlownikBadan, on_delete=models.PROTECT)
+    wizyta = models.ForeignKey(Wizyta, on_delete=models.PROTECT)
+
+    badania = BadanieLaboratoryjneManager()
 
     class Meta:
         verbose_name_plural = "Badania Laboratoryjne"

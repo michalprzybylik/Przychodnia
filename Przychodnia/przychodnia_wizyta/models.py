@@ -5,8 +5,7 @@ from django.db.models import Q
 from django.utils import timezone
 
 from przychodnia_pacjent.models import Pacjent
-from przychodnia_app.models import Rejestratorka
-from przychodnia_app.models import Lekarz
+from przychodnia_app.models import Lekarz, Rejestratorka
 
 
 class WizytaQuerySet(models.QuerySet):

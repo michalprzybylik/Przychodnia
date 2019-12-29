@@ -14,6 +14,7 @@ from common.access_decorators_mixins import uprawniania_lekarz_wymagane
 from przychodnia_wizyta.models import Wizyta
 from przychodnia_app.models import Lekarz
 from laboratorium_app.models import BadanieLaboratoryjne
+from laboratorium_app.forms import ZlecBadanieLaboratoryjneForm
 
 
 def lekarz_by_request(request):
@@ -51,10 +52,13 @@ class LekarzZakonczoneWizyty(View):
 class LekarzRealizujWizyte(View):
     template_name = "przychodnia_app/lekarz/realizuj-wizyte.html"
     def get(self, request, wizyta_id):
-        # ja = lekarz_by_request(request)
         realizowana_wizyta = get_object_or_404(Wizyta, id=wizyta_id, status="REJ")
+        bad_lab_w_ramach_wizyty = BadanieLaboratoryjne.badania.w_ramach_wizyty(
+            realizowana_wizyta
+        )
         context = {
             "realizowana_wizyta": realizowana_wizyta,
+            "bad_lab_w_ramach_wizyty": bad_lab_w_ramach_wizyty,
         }
         return render(request, self.template_name, context)
 
@@ -90,8 +94,7 @@ class LekarzPrzegladajInneWizyty(ListView):
 @method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
 class LekarzZlecBadanieLaboratoryjne(CreateView):
     template_name = "przychodnia_app/lekarz/zlec-badanie-lab.html"
-    model = BadanieLaboratoryjne
-    fields = ['uwagi_lekarza', 'slownik']
+    form_class = ZlecBadanieLaboratoryjneForm
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -104,3 +107,21 @@ class LekarzZlecBadanieLaboratoryjne(CreateView):
             **context,
         }
         return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        wizyta = get_object_or_404(
+            Wizyta, id=self.kwargs.get("wizyta_id")
+        )
+        self.object.wizyta = wizyta
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        messages.success(self.request, "Badanie laboratoryjne dodane poprawnie")
+        return reverse(
+            "przychodnia_app:lekarz-realizuj-wizyte",
+            kwargs={
+                "wizyta_id": self.kwargs.get("wizyta_id")
+            }
+        )

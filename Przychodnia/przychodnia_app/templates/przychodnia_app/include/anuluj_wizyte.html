@@ -1,5 +1,5 @@
 {% if wizyta.status == "REJ" %}
-<a class="btn btn-danger" href="{% url 'przychodnia_app:przychodnia-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-placement="bottom" title="Anuluj wizyte">
+<a class="btn btn-sm btn-danger" href="{% url 'przychodnia_app:przychodnia-anuluj-wizyte' wizyta_id=wizyta.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Anuluj wizyte">
   <i class="fas fa-ban"></i>
 </a>
 {% endif %}
