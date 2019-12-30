@@ -5,4 +5,7 @@ from przychodnia_bad_fiz import models
 
 @admin.register(models.BadanieFizykalne)
 class BadanieFizykalneAdmin(admin.ModelAdmin):
-    pass
+    # list_filter = []
+    # ordering = []
+    # search_fields = []
+    list_display = ["wizyta", "slownik"]

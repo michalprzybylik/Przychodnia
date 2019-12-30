@@ -51,7 +51,7 @@ class Wizyta(models.Model):
     diagnoza = models.TextField(null=True, blank=True)
     status = models.CharField(null=False, choices=STATUS, max_length=4, default="REJ")
     dt_rej = models.DateTimeField(auto_now_add=True)
-    dt_zak_anul = models.DateTimeField(null=True)
+    dt_zak_anul = models.DateTimeField(null=True, blank=True)
 
     pacjent = models.ForeignKey(Pacjent, on_delete=models.PROTECT)
     rejestratorka = models.ForeignKey(Rejestratorka, on_delete=models.PROTECT)

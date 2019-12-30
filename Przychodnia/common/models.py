@@ -20,10 +20,6 @@ class CommonProfileModel(models.Model):
     def __str__(self):
         return "%s %s" % (self.imie, self.nazwisko)
 
-    @property
-    def name_with_role(self):
-        return "%s %s [%s]" % (self.imie, self.nazwisko, self.role)
-
     class Meta:
         abstract = True
 
@@ -36,6 +32,9 @@ class SlownikBadan(models.Model):
     key = models.CharField(max_length=32, primary_key=True)
     typ = models.CharField(max_length=1, choices=TYP_BAD)
     nazwa = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "[BadLab] {s.key} - {s.nazwa}".format(s=self)
 
     class Meta:
         verbose_name_plural = "Słownik Badań"

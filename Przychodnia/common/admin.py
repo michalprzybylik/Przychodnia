@@ -60,7 +60,7 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('username', 'email')
+    list_display = ('username',)
     list_filter = ()
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password', 'role')}),
@@ -84,7 +84,10 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 admin.site.unregister(Group)
 
-class SlownikBadanAdmin(admin.ModelAdmin):
-    pass
 
-admin.site.register(SlownikBadan, SlownikBadanAdmin)
+@admin.register(SlownikBadan)
+class SlownikBadanAdmin(admin.ModelAdmin):
+    list_filter = ['typ']
+    ordering = ['key']
+    search_fields = ['key', 'nazwa']
+    list_display = ['key', 'typ', 'nazwa']

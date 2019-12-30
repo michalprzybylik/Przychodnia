@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Data zlecenia</th>
+      <th scope="col">Status</th>
+      <th scope="col">Kod badania</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bad_lab in badania_laboratorujne %}
+    <tr>
+      <td>
+        {{bad_lab.dt_zlecenia|date:"d/m/Y"}} <br>
+        {{bad_lab.dt_zlecenia|date:"H:i"}}
+      </td>
+      <td>
+        {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
+      </td>
+      <td>
+        <span data-toggle="tooltip" data-placement="left" title="{{bad_lab.slownik.nazwa}}">
+          {{bad_lab.slownik.key}}
+        </span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

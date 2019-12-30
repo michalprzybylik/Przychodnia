@@ -47,7 +47,7 @@ urlpatterns = [
         name="lekarz-moje-zakonczone-wizyty"
     ),
     path(
-        "lekarz/wizyta/<int:wizyta_id>/realizuj",
+        "lekarz/wizyta/<int:wizyta_id>/realizuj/",
         views.LekarzRealizujWizyte.as_view(),
         name="lekarz-realizuj-wizyte"
     ),
@@ -60,6 +60,11 @@ urlpatterns = [
         "lekarz/wizyta/<int:wizyta_id>/realizuj/zlec-badanie-lab/",
         views.LekarzZlecBadanieLaboratoryjne.as_view(),
         name="lekarz-zlec-badanie-lab"
+    ),
+    path(
+        "lekarz/wizyta/<int:wizyta_id>/realizuj/wykonaj-badanie-fiz/",
+        views.LekarzWykonajBadanieFizykalne.as_view(),
+        name="lekarz-wykonaj-badanie-fiz"
     ),
     ###################################################
     # Wspólne (przychodnia)

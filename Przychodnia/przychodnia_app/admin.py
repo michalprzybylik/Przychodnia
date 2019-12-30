@@ -5,9 +5,11 @@ from przychodnia_app import models
 
 @admin.register(models.Rejestratorka)
 class RejestratorkaAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ["imie", "nazwisko"]
+    list_display = ["__str__", "user"]
 
 
 @admin.register(models.Lekarz)
 class LekarzAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ["imie", "nazwisko"]
+    list_display = ["__str__", "user"]

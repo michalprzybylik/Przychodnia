@@ -51,7 +51,8 @@ class BadanieLaboratoryjne(models.Model):
     dt_zlecenia = models.DateTimeField(auto_now_add=True)
     # TODO: Wynik w sensie pozytywny(true)/negatywny(false) BooleanField,
     #       czy jako TextField ?
-    wynik = models.BooleanField(default=False)
+    # wynik = models.BooleanField(default=False)
+    wynik = models.TextField()
     # Data wykonania/anulowania przez Laboranta
     dt_wyk_anul_lab = models.DateTimeField(null=True)
     # Data zatwierdzenia/anulowania przez Kier. Laboratorium
@@ -59,6 +60,13 @@ class BadanieLaboratoryjne(models.Model):
     uwagi_kierownika = models.TextField(null=True, blank=True)
     slownik = models.ForeignKey(SlownikBadan, on_delete=models.PROTECT)
     wizyta = models.ForeignKey(Wizyta, on_delete=models.PROTECT)
+
+    laborant = models.ForeignKey(
+        Laborant, null=True, blank=True, on_delete=models.PROTECT
+    )
+    kier_lab = models.ForeignKey(
+        KierownikLabarotorium, null=True, blank=True, on_delete=models.PROTECT
+    )
 
     badania = BadanieLaboratoryjneManager()
 

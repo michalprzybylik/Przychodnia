@@ -1,13 +1,16 @@
 {% extends 'przychodnia_app/extend/base_przychodnia.html' %}
 {% block title %}Realizuj wizyte {{realizowana_wizyta.id}}{% endblock %}
 {% block content %}
-
+<style media="screen">
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+</style>
 {% with realizowana_wizyta as wizyta %}
 <h4>
   <i class="fas fa-notes-medical"></i>
   &nbsp;Realizacja wizyty (ID={{wizyta.id}})
 </h4>
-
 
 <div class="container-fluid">
   <div class="row">
@@ -36,7 +39,7 @@
       {% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
     </div>
     <div class="col-md-6">
-      <a href="{% url 'przychodnia_app:lekarz-zlec-badanie-lab' wizyta_id=wizyta.id %}" class="btn btn-block btn-success btn-sm">
+      <a href="{% url 'przychodnia_app:lekarz-wykonaj-badanie-fiz' wizyta_id=wizyta.id %}" class="btn btn-block btn-success btn-sm">
         <i class="fas fa-stethoscope"></i>
         &nbsp;Wykonaj badanie fizykalne
       </a>
@@ -60,39 +63,88 @@
   </div>
 </div>
 
-
-{% if bad_lab_w_ramach_wizyty %}
 <hr>
-<h5>
-  <i class="fas fa-vial"></i>
-  &nbsp;Zlecone badania laboratoryjne w ramach tej wizyty
-</h5>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Data zlecenia</th>
-      <th scope="col">Status</th>
-      <th scope="col">Kod badania</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for bad_lab in bad_lab_w_ramach_wizyty %}
-    <tr>
-      <td>{{bad_lab.dt_zlecenia}}</td>
-      <td>
-        {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
-      </td>
-      <td>
-        <span data-toggle="tooltip" data-placement="left" title="{{bad_lab.slownik.nazwa}}">
-          {{bad_lab.slownik.key}}
-        </span>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endif %}
+<div class="container-fluid">
+  <div class="row">
+  {% if bad_fiz_w_ramach_wizyty or bad_lab_w_ramach_wizyty %}
+  <div class="col-md-3">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+        <i class="fas fa-user-md"></i>&nbsp;
+        Przeprowadź wywiad
+      </a>
+      {% if bad_fiz_w_ramach_wizyty %}
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+        <i class="fas fa-stethoscope"></i>&nbsp;
+        Badania fizykalne
+      </a>
+      {% endif %}
+      {% if bad_lab_w_ramach_wizyty %}
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+        <i class="fas fa-vial"></i>&nbsp;
+        Badania laboratoryjne
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% if bad_fiz_w_ramach_wizyty or bad_lab_w_ramach_wizyty %}
+  <div class="col-md-9">
+  {% else %}
+  <div class="col-md-12">
+  {% endif %}
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <form id="wywiad_form" action="." method="post">
+          {% csrf_token %}
+          {{wywiad_form}}
+          <div class="pt-2"></div>
+          <input type="hidden" id="wywiad_action" name="wywiad_action">
+          <a onclick="decideAction('zatwierdz')" class="text-white btn btn-success">
+            Zakończ wizytę
+          </a>
+          <a onclick="decideAction('zapisz')" class="text-white btn btn-primary">
+            Zapisz stan wizyty
+          </a>
+        </form>
+      </div>
+      {% if bad_fiz_w_ramach_wizyty %}
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+          <h5>
+            <i class="fas fa-stethoscope"></i>
+            &nbsp;Wykonane badania fizykalne w ramach tej wizyty
+          </h5>
+          {% include 'przychodnia_app/lekarz/badania/badanie_fiz_tabela.html' with badania_fizykalne=bad_fiz_w_ramach_wizyty %}
+      </div>
+      {% endif %}
+      {% if bad_lab_w_ramach_wizyty %}
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <h5>
+            <i class="fas fa-vial"></i>
+            &nbsp;Zlecone badania laboratoryjne w ramach tej wizyty
+          </h5>
+          {% include 'przychodnia_app/lekarz/badania/badanie_lab_tabela.html' with badania_laboratorujne=bad_lab_w_ramach_wizyty %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+  function decideAction(act) {
+    if(act === "zatwierdz") {
+      q = confirm("Zakończone wizyty NIE mogą być modyfikowane. Czy na pewno chcesz zakończyć wizytę?");
+      if(!q) {return;}
+    }
+    $('#wywiad_action').val(act);
+    $('#wywiad_form').submit();
+  }
+</script>
 
 {% endwith %}
 {% endblock %}

@@ -5,9 +5,13 @@ from przychodnia_pacjent import models
 
 @admin.register(models.Pacjent)
 class PacjentAdmin(admin.ModelAdmin):
-    pass
+    # list_filter = []
+    # ordering = []
+    search_fields = ["imie", "nazwisko", "pesel", "adres"]
+    list_display = ["pesel", "imie", "nazwisko", "adres"]
 
 
 @admin.register(models.Adres)
 class AdresAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ["miejscowosc", "ulica", "nr_domu", "nr_lokalu"]
+    list_display = ["__str__", "miejscowosc", "ulica", "nr_domu", "nr_lokalu"]

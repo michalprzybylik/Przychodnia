@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Kod badania</th>
+      <th scope="col">Wynik</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bad_fiz in badania_fizykalne %}
+    <tr>
+      <td>
+        <span data-toggle="tooltip" data-placement="left" title="{{bad_fiz.slownik.nazwa}}">
+          {{bad_fiz.slownik.key}}
+        </span>
+      </td>
+      <td>
+        {{bad_fiz.wynik}}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
