@@ -17,6 +17,7 @@ Python3, Django 2.2.8
 ## ToDo
 [x] usunąć pole Opis z widoku rejestratorki
 [ ] wynik w modelu BadLab i BadFiz to bool czy text ?
+[ ] kto przydziela kierownika i laboranta do badania lab?
 
 ## Opis
 
