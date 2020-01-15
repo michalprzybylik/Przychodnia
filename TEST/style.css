@@ -1,0 +1,31 @@
+HTML body{
+    background-color:#D8F3FC;
+}
+.img-logo{
+    widows: 100px;
+    height:100px;
+    margin-left:2%;
+}
+
+.tekst1{
+    Font-size:40px;
+    color:#99A3FF;
+    margin-left: 10%;
+    text-align:left;
+}
+.class{
+    border-radius:10px;
+}
+.card-body
+{
+    border:2px solid black;
+    border-radius:7px;
+}
+.form{
+    margin-left:2%;
+    float:left;
+    padding:5px;;
+}
+.card-body{
+    height:300px;
+}
