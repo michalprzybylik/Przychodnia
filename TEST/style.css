@@ -1,5 +1,5 @@
 HTML body{
-    background-color:#D8F3FC;
+    background-color:#dfe6fa;
 }
 .img-logo{
     widows: 100px;
@@ -9,7 +9,7 @@ HTML body{
 
 .tekst1{
     Font-size:40px;
-    color:#99A3FF;
+    color:#FFFFFF;
     margin-left: 10%;
     text-align:left;
 }
@@ -28,4 +28,8 @@ HTML body{
 }
 .card-body{
     height:300px;
+}
+
+.navbar-custom{
+background-color: #5A6782;
 }
