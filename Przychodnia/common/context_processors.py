@@ -6,6 +6,10 @@ from przychodnia_app.models import (
     Lekarz,
     Rejestratorka
 )
+from laboratorium_app.models import (
+    Laborant,
+    KierownikLabarotorium
+)
 
 def common_context(request):
 
@@ -15,6 +19,10 @@ def common_context(request):
             profile = Rejestratorka.objects.get(user=request.user)
         if not profile and request.user.role and request.user.role == "LEK":
             profile = Lekarz.objects.get(user=request.user)
+        if not profile and request.user.role and request.user.role == "LAB":
+            profile = Laborant.objects.get(user=request.user)
+        if not profile and request.user.role and request.user.role == "KLAB":
+            profile = KierownikLabarotorium.objects.get(user=request.user)
 
     context = {
         "time_now": timezone.now(),

@@ -25,6 +25,13 @@
             {{form.lekarz}}
             {{form.lekarz.errors}}
           </div>
+          <div class="form-group col-6">
+            <label for="datepicker_dt_rej">
+              Data rejestracji
+            </label>
+            {{form.dt_rej}}
+            {{form.dt_rej.errors}}
+          </div>
         </div>
         <hr>
         <a class="btn btn-primary text-white" onclick="javascript:$('#wizyta_create_form').submit();">
@@ -36,4 +43,13 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('#datepicker_dt_rej').datepicker({
+    language: 'pl',
+    minDate: new Date(),
+    dateFormat: 'yyyy-mm-dd',
+    timeFormat: 'hh:ii',
+    timepicker: true
+})
+</script>
 {% endblock %}

@@ -53,6 +53,18 @@ class LekarzZakonczoneWizyty(View):
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
 @method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
+class LekarzAnulowaneWizyty(View):
+    template_name = "przychodnia_app/lekarz/moje-anulowane-wizyty.html"
+    def get(self, request):
+        ja = lekarz_by_request(request)
+        anulowane_wizyty = Wizyta.wizyty.filter_by_lekarz(ja, typ="ANUL")
+        return render(request, self.template_name, {
+            "anulowane_wizyty": anulowane_wizyty
+        })
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_lekarz_wymagane, name='dispatch')
 class LekarzRealizujWizyte(View):
     template_name = "przychodnia_app/lekarz/realizuj-wizyte.html"
     def get(self, request, wizyta_id):

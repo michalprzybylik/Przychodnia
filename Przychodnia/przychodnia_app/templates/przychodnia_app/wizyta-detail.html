@@ -43,20 +43,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-
+      <h5>
+        <i class="fas fa-vial"></i>
+        &nbsp;Badania laboratoryjne w ramach tej wizyty
+      </h5>
+      {% include 'przychodnia_app/lekarz/badania/badanie_lab_tabela.html' with badania_laboratorujne=badania_lab %}
     </div>
   </div>
 </div>
-
-<!--
-opis
-diagnoza
-status
-dt_rej
-dt_zak_anul
-pacjent
-rejestratorka
-lekarz
--->
 
 {% endblock %}

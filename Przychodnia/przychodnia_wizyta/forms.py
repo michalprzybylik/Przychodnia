@@ -6,7 +6,7 @@ from przychodnia_wizyta.models import Wizyta
 class WizytaForm(forms.ModelForm):
     class Meta:
         model = Wizyta
-        fields = ("pacjent", "lekarz") # opis
+        fields = ("pacjent", "lekarz", "dt_rej") # opis
 
     def __init__(self, *args, **kwargs):
         super(WizytaForm, self).__init__(*args, **kwargs)
@@ -16,4 +16,8 @@ class WizytaForm(forms.ModelForm):
         })
         self.fields['lekarz'].widget.attrs.update({
             'class': 'form-control select2-select'
+        })
+        self.fields['dt_rej'].widget.attrs.update({
+            'id': 'datepicker_dt_rej',
+            'autocomplete': 'off',
         })

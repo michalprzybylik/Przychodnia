@@ -1,0 +1,18 @@
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
+{% block title %}Wizyta - szczegóły{% endblock %}
+{% block content %}
+
+{{pacjent}}
+
+<h5>
+  <i class="fas fa-stethoscope"></i>
+  &nbsp;Badania fizykalne
+</h5>
+{% include 'przychodnia_app/lekarz/badania/badanie_fiz_tabela.html' with badania_fizykalne=badania_fiz %}
+<h5>
+  <i class="fas fa-vial"></i>
+  &nbsp;Badania laboratoryjne
+</h5>
+{% include 'przychodnia_app/lekarz/badania/badanie_lab_tabela.html' with badania_laboratorujne=badania_lab %}
+
+{% endblock %}

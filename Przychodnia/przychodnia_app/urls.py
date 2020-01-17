@@ -1,6 +1,8 @@
 from django.urls import path, include
 
 from przychodnia_app import views
+from przychodnia_bad_fiz import views as bad_fiz_views
+from przychodnia_pacjent import views as pacjent_views
 
 app_name = "przychodnia_app"
 
@@ -47,6 +49,11 @@ urlpatterns = [
         name="lekarz-moje-zakonczone-wizyty"
     ),
     path(
+        "lekarz/moje-anulowane-wizyty",
+        views.LekarzAnulowaneWizyty.as_view(),
+        name="lekarz-moje-anulowane-wizyty"
+    ),
+    path(
         "lekarz/wizyta/<int:wizyta_id>/realizuj/",
         views.LekarzRealizujWizyte.as_view(),
         name="lekarz-realizuj-wizyte"
@@ -67,6 +74,14 @@ urlpatterns = [
         name="lekarz-wykonaj-badanie-fiz"
     ),
     ###################################################
+    # Lekarz (Bad Fiz)
+    ###################################################
+    path(
+        "lekarz/badanie-fiz/<int:pk>",
+        bad_fiz_views.PrzychodniaBadFizDetail.as_view(),
+        name="lekarz-bad-fiz-detail"
+    ),
+    ###################################################
     # Wspólne (przychodnia)
     ###################################################
     path(
@@ -78,6 +93,16 @@ urlpatterns = [
         "pacjenci/",
         views.PrzychodniaPacjentLista.as_view(),
         name="przychodnia-pacjenci-list"
+    ),
+    path(
+        "pacjent/<int:pk>/",
+        pacjent_views.PacjentDetailView.as_view(),
+        name="przychodnia-pacjent-detail"
+    ),
+    path(
+        "pacjent/<int:pk>/badania",
+        pacjent_views.PacjentBadaniaView.as_view(),
+        name="przychodnia-pacjent-badania"
     ),
     path(
         "wizyta/<int:pk>/",

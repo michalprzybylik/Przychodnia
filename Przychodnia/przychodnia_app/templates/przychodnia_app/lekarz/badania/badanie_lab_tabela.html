@@ -1,25 +1,26 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Data zlecenia</th>
+      <th scope="col">Nazwa badania</th>
       <th scope="col">Status</th>
-      <th scope="col">Kod badania</th>
+      <th scope="col">Akcje</th>
     </tr>
   </thead>
   <tbody>
     {% for bad_lab in badania_laboratorujne %}
     <tr>
       <td>
-        {{bad_lab.dt_zlecenia|date:"d/m/Y"}} <br>
-        {{bad_lab.dt_zlecenia|date:"H:i"}}
+        <span data-toggle="tooltip" data-placement="right" title="{{bad_lab.slownik.key}}">
+          {{bad_lab.slownik.nazwa}}
+        </span>
       </td>
       <td>
         {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
       </td>
       <td>
-        <span data-toggle="tooltip" data-placement="left" title="{{bad_lab.slownik.nazwa}}">
-          {{bad_lab.slownik.key}}
-        </span>
+        <a href="{% url 'laboratorium_app:laboratorium-bad-lab-detail' pk=bad_lab.pk %}" class="btn btn-sm btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły badania">
+          <i class="far fa-eye"></i>
+        </a>
       </td>
     </tr>
     {% endfor %}

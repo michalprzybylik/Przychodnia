@@ -51,7 +51,7 @@
         <i class="fas fa-notes-medical"></i>
         &nbsp;Przeglądaj inne wizyty pacjenta
       </a>
-      <a href="#" class="btn btn-block btn-secondary btn-sm">
+      <a href="{% url 'przychodnia_app:przychodnia-pacjent-badania' pk=wizyta.pacjent.pk %}" class="btn btn-block btn-secondary btn-sm">
         <i class="fas fa-notes-medical"></i>
         &nbsp;Przeglądaj badania pacjenta
       </a>
@@ -122,7 +122,7 @@
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
           <h5>
             <i class="fas fa-vial"></i>
-            &nbsp;Zlecone badania laboratoryjne w ramach tej wizyty
+            &nbsp;Badania laboratoryjne w ramach tej wizyty
           </h5>
           {% include 'przychodnia_app/lekarz/badania/badanie_lab_tabela.html' with badania_laboratorujne=bad_lab_w_ramach_wizyty %}
       </div>

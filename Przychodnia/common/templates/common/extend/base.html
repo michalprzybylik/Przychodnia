@@ -10,9 +10,12 @@
     <script type="text/javascript" src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/select2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datepicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/i18n/datepicker.pl.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/select2.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <link rel="stylesheet" href="{% static 'css/shame.css' %}">
+    <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
     <style media="screen">
     .main-toast {
       right: 1rem!important;
@@ -24,8 +27,13 @@
   <nav class="fixed-top navbar navbar-expand-lg navbar-light" id="header_nav">
     <a class="navbar-brand">
       <span>
-        <i class="fas fa-clinic-medical"></i>
-        <span class="pl-2">Przychodnia</span>
+        {% if user.role == "LAB" or user.role == "KLAB" %}
+          <i class="fas fa-microscope"></i>
+          <span class="pl-2">Laboratorium</span>
+        {% else %}
+          <i class="fas fa-clinic-medical"></i>
+          <span class="pl-2">Przychodnia</span>
+        {% endif %}
       </span>
     </a>
     <div class="collapse navbar-collapse show" id="header_nav_collapse">
@@ -53,10 +61,11 @@
               <i class="fas fa-user-nurse" title="Rejestratorka"></i>
             {% elif user.role == "LEK" %}
               <i class="fas fa-stethoscope" title="Lekarz"></i>
+            {% elif user.role == "LAB" %}
+              <i class="fas fa-vial" title="Laborant"></i>
+            {% elif user.role == "KLAB" %}
+              <i class="fas fa-microscope" title="Kierownik Laboratorium"></i>
             {% endif %}
-            <!-- <i class="fas fa-vial" title="Laborant"></i>
-            <i class="fas fa-microscope" title="Kierownik Laboratorium"></i>
-            <i class="fas fa-user-nurse" title="Rejestratorka"></i> -->
           </a>
         </li>
       </ul>

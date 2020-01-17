@@ -15,6 +15,12 @@ def onlogin_redirect(user, request, onlogin_msg):
     if user.role == "LEK":
         messages.success(request, onlogin_msg.format(who="Lekarz"))
         return redirect(reverse('przychodnia_app:lekarz-moje-wizyty'))
+    if user.role == "LAB":
+        messages.success(request, onlogin_msg.format(who="Laborant"))
+        return redirect(reverse('laboratorium_app:laborant-dashboard'))
+    if user.role == "KLAB":
+        messages.success(request, onlogin_msg.format(who="Kierownik Laboratorium"))
+        return redirect(reverse('laboratorium_app:kierownik-lab-dashboard'))
     return redirect("/")
 
 class Login(View):

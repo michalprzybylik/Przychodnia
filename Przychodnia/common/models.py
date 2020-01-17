@@ -34,7 +34,7 @@ class SlownikBadan(models.Model):
     nazwa = models.CharField(max_length=128)
 
     def __str__(self):
-        return "[BadLab] {s.key} - {s.nazwa}".format(s=self)
+        return "{s.key} - {s.nazwa}".format(s=self)
 
     class Meta:
         verbose_name_plural = "Słownik Badań"

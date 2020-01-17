@@ -19,7 +19,11 @@
   <tbody>
     {% for pacjent in pacjenci %}
     <tr>
-      <td>{{pacjent.imie}} {{pacjent.nazwisko}}</td>
+      <td>
+        <a href="{% url 'przychodnia_app:przychodnia-pacjent-detail' pk=pacjent.pk %}">
+          {{pacjent.imie}} {{pacjent.nazwisko}}
+        </a>
+      </td>
       <td>{{pacjent.pesel}}</td>
       <td>{{pacjent.adres}}</td>
     </tr>
