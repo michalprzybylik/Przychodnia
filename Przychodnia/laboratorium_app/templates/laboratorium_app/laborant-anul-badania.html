@@ -9,6 +9,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">Anulowano</th>
       <th scope="col">Nazwa badania</th>
       <th scope="col">Status</th>
       <th scope="col">Akcje</th>
@@ -17,6 +18,9 @@
   <tbody>
     {% for bad_lab in anul_badania %}
     <tr>
+      <td>
+        {{bad_lab.dt_wyk_anul_lab}}
+      </td>
       <td>
         <span data-toggle="tooltip" data-placement="right" title="{{bad_lab.slownik.key}}">
           {{bad_lab.slownik.nazwa}}

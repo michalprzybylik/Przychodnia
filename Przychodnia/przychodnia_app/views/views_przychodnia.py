@@ -13,6 +13,7 @@ from common.access_decorators_mixins import (
 from django.views.generic.detail import DetailView
 from przychodnia_wizyta.models import Wizyta
 from laboratorium_app.models import BadanieLaboratoryjne
+from przychodnia_bad_fiz.models import BadanieFizykalne
 
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
@@ -38,6 +39,9 @@ class PrzychodniaWizytaDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["badania_lab"] = BadanieLaboratoryjne.badania.w_ramach_wizyty(
+            wizyta=kwargs.get('object')
+        )
+        context["badania_fiz"] = BadanieFizykalne.badania.w_ramach_wizyty(
             wizyta=kwargs.get('object')
         )
         return context

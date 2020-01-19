@@ -1,7 +1,45 @@
 {% extends 'przychodnia_app/extend/base_przychodnia.html' %}
-{% block title %}Kier. Laborant{% endblock %}
+{% block title %}Laborant{% endblock %}
 {% block content %}
 
-Kier. Laborant dashboard
-
+<h4>
+  <i class="fas fas fa-vial"></i>&nbsp;Wykonane badania laboratoryjne
+</h4>
+{% include 'przychodnia_app/include/pagination.html' %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nazwa badania</th>
+      <th scope="col">Status</th>
+      <th scope="col">Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bad_lab in wyk_badania %}
+    <tr>
+      <td>
+        <span data-toggle="tooltip" data-placement="right" title="{{bad_lab.slownik.key}}">
+          {{bad_lab.slownik.nazwa}}
+        </span>
+      </td>
+      <td>
+        {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
+      </td>
+      <td>
+        <a class="btn btn-sm btn-success" href="{% url 'laboratorium_app:kierownik-zatw-anul' pk=bad_lab.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Zatwierdź badanie laboratoryjne">
+          <i class="far fa-check-square"></i>
+        </a>
+        <a href="{% url 'laboratorium_app:laboratorium-bad-lab-detail' pk=bad_lab.pk %}" class="btn btn-sm btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły badania">
+          <i class="far fa-eye"></i>
+        </a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" class="text-center">-Brak-</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'przychodnia_app/include/pagination.html' %}
 {% endblock %}

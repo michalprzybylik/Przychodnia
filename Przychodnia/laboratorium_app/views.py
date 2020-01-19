@@ -14,7 +14,7 @@ from common.access_decorators_mixins import (
 )
 from laboratorium_app.models import BadanieLaboratoryjne, Laborant, KierownikLabarotorium
 from django.views.generic import View
-from laboratorium_app.forms import BadanieLabWykonaj
+from laboratorium_app.forms import BadanieLabWykonaj, BadanieKierZatwierdz
 
 
 def laborant_by_request(request):
@@ -42,16 +42,21 @@ class LaborantDashboard(View):
     template_name = "laboratorium_app/laborant-dashboard.html"
     def get(self, request):
         context = {}
-        context["badania"] = BadanieLaboratoryjne.badania.filter(status="ZLE")
+        context["badania"] = BadanieLaboratoryjne.badania.filter(status="ZLE").order_by("-dt_zlecenia")
         return render(request, self.template_name, context)
 
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
 @method_decorator(uprawniania_kierownik_lab_wymagane, name='dispatch')
-class KierownikLabDashboard(View):
+class KierownikLabDashboard(ListView):
     template_name = "laboratorium_app/kierownik-lab-dashboard.html"
-    def get(self, request):
-        return render(request, self.template_name, {})
+    paginate_by = 20
+    model = BadanieLaboratoryjne
+    context_object_name = "wyk_badania"
+    allow_empty = True
+
+    def get_queryset(self):
+        return self.model.badania.filter(status="WYK").order_by("-dt_wyk_anul_lab")
 
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
@@ -64,7 +69,7 @@ class LaborantWykonaneBadania(ListView):
     allow_empty = True
 
     def get_queryset(self):
-        return self.model.badania.filter(status="WYK")
+        return self.model.badania.filter(status="WYK").order_by("-dt_wyk_anul_lab")
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
 @method_decorator(uprawniania_przegladanie_badan_wymagane, name='dispatch')
@@ -78,7 +83,7 @@ class LaborantAnulowaneBadania(ListView):
     def get_queryset(self):
         return self.model.badania.filter(
             Q(status="ANUL_LAB") | Q(status="ANUL_KLAB")
-        )
+        ).order_by("-dt_wyk_anul_lab")
 
 
 @method_decorator(login_required(login_url='/login'), name='dispatch')
@@ -117,3 +122,54 @@ class LaborantWykAnulView(DetailView):
         context = super().get_context_data(**kwargs)
         context["form"] = BadanieLabWykonaj(instance=kwargs.get("object"))
         return context
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_kierownik_lab_wymagane, name='dispatch')
+class KierownikZatwAnulView(DetailView):
+    template_name = "laboratorium_app/kierownik-zatw-anul.html"
+    context_object_name = "badania"
+    model = BadanieLaboratoryjne
+
+    def post(self, request, **kwargs):
+        ja = kier_lab_by_request(request)
+        badanie = get_object_or_404(BadanieLaboratoryjne, id=kwargs.get("pk"))
+        uwagi_kierownika = request.POST.get("uwagi_kierownika")
+        bad_wyk_action = request.POST.get("bad_zatw_action")
+        bad_anul_action = request.POST.get("bad_anul_action")
+
+        if bad_wyk_action:
+            messages.success(self.request, "Zatwierdzono badanie laboratoryjne")
+            badanie.uwagi_kierownika = uwagi_kierownika
+            badanie.status = "ZATW"
+            badanie.dt_zatw_anul_klab = timezone.now()
+            badanie.kier_lab = ja
+            badanie.save()
+
+        if bad_anul_action:
+            messages.success(self.request, "Anulowano badanie laboratoryjne")
+            badanie.uwagi_kierownika = uwagi_kierownika
+            badanie.status = "ANUL_KLAB"
+            badanie.dt_zatw_anul_klab = timezone.now()
+            badanie.kier_lab = ja
+            badanie.save()
+
+        return redirect(reverse("laboratorium_app:kierownik-lab-dashboard"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = BadanieKierZatwierdz(instance=kwargs.get("object"))
+        return context
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_przegladanie_badan_wymagane, name='dispatch')
+class KierownikZatwierdzoneBadania(ListView):
+    template_name = "laboratorium_app/badania-zatw.html"
+    paginate_by = 20
+    model = BadanieLaboratoryjne
+    context_object_name = "zatw_badania"
+    allow_empty = True
+
+    def get_queryset(self):
+        return self.model.badania.filter(status="ZATW").order_by("-dt_zatw_anul_klab")

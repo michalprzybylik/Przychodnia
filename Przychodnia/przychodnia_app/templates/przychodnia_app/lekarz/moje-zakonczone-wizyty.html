@@ -8,6 +8,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">Zakończono</th>
       <th scope="col">Pacjent</th>
       <th scope="col">Zarejestrowano</th>
       <th scope="col">Zakończono</th>
@@ -17,6 +18,9 @@
   <tbody>
     {% for wizyta in zakonczone_wizyty %}
     <tr>
+      <td>
+        {{wizyta.dt_zak_anul}}
+      </td>
       <td>
         {{wizyta.pacjent}}
         {% if wizyta.is_old %}

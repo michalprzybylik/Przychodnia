@@ -1,11 +1,11 @@
 {% if badanie_lab.status == "ZLE" %}
-Zlecone
+Zlecone (przez {{badanie_lab.wizyta.lekarz}})
 {% elif badanie_lab.status == "WYK" %}
-Wykonane
+Wykonane ({{badanie_lab.laborant}})
 {% elif badanie_lab.status == "ANUL_LAB" %}
-Anulowane przez Laboranta
+Anulowane przez Laboranta ({{badanie_lab.laborant}})
 {% elif badanie_lab.status == "ZATW" %}
-Zatwierdzone
+Zatwierdzone ({{badanie_lab.kier_lab}})
 {% elif badanie_lab.status == "ANUL_KLAB" %}
-Anulowane przez Kier. Laboratorium
+Anulowane przez Kier. Laboratorium ({{badanie_lab.kier_lab}})
 {% endif %}

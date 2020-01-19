@@ -4,11 +4,15 @@
 
 <h4>
   <i class="fas fa-vial"></i>
-  &nbsp;Wykonaj/Anuluj badanie laboratoryjne
+  &nbsp;Zatwierdź/Anuluj badanie laboratoryjne
 </h4>
+
 <h4>
   ({{object.slownik.key}}) {{object.slownik.nazwa}}
 </h4>
+<p class="m-0 p-0">
+  Wykonano przez <b>{{object.laborant}}</b> dnia <b>{{object.dt_wyk_anul_lab}}</b>
+</p>
 <p class="m-0 p-0">
   Lekarz zlecający: {{object.wizyta.lekarz}}
 </p>
@@ -21,13 +25,18 @@
 <code>
   {{object.uwagi_lekarza}}
 </code>
+<p class="m-0 p-0">
+  Wynik badania:
+</p>
+<code>
+  {{object.wynik}}
+</code>
 <hr>
-
 <form class="" action="." method="post">
   {% csrf_token %}
   {{form}}
   <hr>
-  <input type="submit" class="btn btn-sm btn-success" name="bad_wyk_action" value="Wykonaj badanie">
+  <input type="submit" class="btn btn-sm btn-success" name="bad_zatw_action" value="Zatwierdź badanie">
   <input type="submit" class="btn btn-sm btn-danger" name="bad_anul_action" value="Anuluj badanie">
 </form>
 

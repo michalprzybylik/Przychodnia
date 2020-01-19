@@ -38,17 +38,36 @@
   Data zatwierdzenia: {{object.dt_zatw_anul_klab}}
   {% endif %}
 </p>
+{% if object.status == "ZATW" %}
+<p class="p-0 m-0">
+  Wykonane przez: {{object.laborant}}
+</p>
+<p class="p-0 m-0">
+  Data wykonania: {{object.dt_wyk_anul_lab}}
+</p>
+{% endif %}
 
 <br>
 <b>Uwagi lekarza</b>
 <p>
+  {% if object.uwagi_lekarza %}
   {{object.uwagi_lekarza}}
+  {% else %}
+  -Brak-
+  {% endif %}
 </p>
 {% if object.wynik %}
-<br>
 <b>Wynik</b>
 <p>
   {{object.wynik}}
+</p>
+<b>Uwagi kierownika laboratorium</b>
+<p>
+  {% if object.uwagi_kierownika %}
+  {{object.uwagi_kierownika}}
+  {% else %}
+  -Brak-
+  {% endif %}
 </p>
 {% endif %}
 

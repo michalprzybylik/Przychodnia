@@ -8,6 +8,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">Anulowano</th>
       <th scope="col">Pacjent</th>
       <th scope="col">Zarejestrowano</th>
       <th scope="col">Anulowano</th>
@@ -17,6 +18,9 @@
   <tbody>
     {% for wizyta in anulowane_wizyty %}
     <tr>
+      <td>
+        {{wizyta.dt_zak_anul}}
+      </td>
       <td>
         {{wizyta.pacjent}}
       </td>

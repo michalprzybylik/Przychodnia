@@ -2,6 +2,17 @@
 {% block title %}Wizyta - szczegóły{% endblock %}
 {% block content %}
 
-{{badanie_fiz}}
+<h4>
+    ({{badanie_fiz.slownik.key}}) {{badanie_fiz.slownik.nazwa}}
+</h4>
+<p>
+  Pacjent: {{badanie_fiz.wizyta.pacjent}}
+</p>
+<p>
+  Lekarz: {{badanie_fiz.wizyta.lekarz}}
+</p>
+<p>
+  Wynik: {{badanie_fiz.wynik}}
+</p>
 
 {% endblock %}

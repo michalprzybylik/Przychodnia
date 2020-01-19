@@ -2,6 +2,17 @@
 {% block title %}Wizyta - szczegóły{% endblock %}
 {% block content %}
 
-{{pacjent}}
+<p>
+  {{pacjent}}
+</p>
+<p>
+  PESEL: {{pacjent.pesel}}
+</p>
+<p>
+  {{pacjent.adres.miejscowosc}}
+  {{pacjent.adres.ulica}}
+  {{pacjent.adres.nr_domu}}
+  {{pacjent.adres.nr_lokalu}}
+</p>
 
 {% endblock %}

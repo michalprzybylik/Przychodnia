@@ -36,6 +36,16 @@ urlpatterns = [
         views.KierownikLabDashboard.as_view(),
         name="kierownik-lab-dashboard"
     ),
+    path(
+        "kieronik-laboratorium/zatwierdz-badanie/<int:pk>/",
+        views.KierownikZatwAnulView.as_view(),
+        name="kierownik-zatw-anul"
+    ),
+    path(
+        "badania-zatwierdzone/",
+        views.KierownikZatwierdzoneBadania.as_view(),
+        name="laboratorium-bad-lab-zatw-list"
+    ),
     ###################################################
     # Badania
     ###################################################

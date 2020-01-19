@@ -48,6 +48,11 @@
         &nbsp;Badania laboratoryjne w ramach tej wizyty
       </h5>
       {% include 'przychodnia_app/lekarz/badania/badanie_lab_tabela.html' with badania_laboratorujne=badania_lab %}
+      <h5>
+        <i class="fas fa-stethoscope"></i>
+        &nbsp;Badania fizykalne w ramach tej wizyty
+      </h5>
+      {% include 'przychodnia_app/lekarz/badania/badanie_fiz_tabela.html' with badania_fizykalne=badania_fiz %}
     </div>
   </div>
 </div>
