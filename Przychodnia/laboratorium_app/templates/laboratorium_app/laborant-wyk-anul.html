@@ -1,0 +1,18 @@
+{% extends 'przychodnia_app/extend/base_przychodnia.html' %}
+{% block title %}Laborant{% endblock %}
+{% block content %}
+
+<h4>
+  ({{object.slownik.key}}) {{object.slownik.nazwa}}
+</h4>
+
+<form class="" action="." method="post">
+  {% csrf_token %}
+  {{form}}
+  <hr>
+  <input type="submit" class="btn btn-sm btn-success" name="bad_wyk_action" value="Wykonaj badanie">
+  <input type="submit" class="btn btn-sm btn-danger" name="bad_anul_action" value="Anuluj badanie">
+</form>
+
+
+{% endblock %}

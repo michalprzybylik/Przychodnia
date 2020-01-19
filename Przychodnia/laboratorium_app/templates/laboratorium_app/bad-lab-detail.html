@@ -2,6 +2,54 @@
 {% block title %}Wizyta - szczegóły{% endblock %}
 {% block content %}
 
-{{object}}
+<h4>
+  Szczegóły badanie laboratoryjnego (ID={{object.pk}}) <br>
+  <small>({{object.slownik.key}}) {{object.slownik.nazwa}}</small>
+</h4>
+<p class="p-0 m-0">
+  Lekarz: {{object.wizyta.lekarz}} ({{object.wizyta.lekarz.npwz}})
+</p>
+<p class="p-0 m-0">
+  Pacjent: {{object.wizyta.pacjent.imie}} {{object.wizyta.pacjent.nazwisko}}
+</p>
+<p class="p-0 m-0">
+  Data zlecenia: {{object.dt_zlecenia}}
+</p>
+<p class="p-0 m-0">
+  Status:
+  <b>
+    {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=object %}
+  </b>
+</p>
+<p class="p-0 m-0">
+  {% if object.status == "ANUL_LAB" %}
+  Data anulowania: {{object.dt_wyk_anul_lab}}
+  {% endif %}
+  {% if object.status == "ANUL_KLAB" %}
+  Data anulowania: {{object.dt_zatw_anul_klab}}
+  {% endif %}
+</p>
+
+<p class="p-0 m-0">
+  {% if object.status == "WYK" %}
+  Data wykonania: {{object.dt_wyk_anul_lab}}
+  {% endif %}
+  {% if object.status == "ZATW" %}
+  Data zatwierdzenia: {{object.dt_zatw_anul_klab}}
+  {% endif %}
+</p>
+
+<br>
+<b>Uwagi lekarza</b>
+<p>
+  {{object.uwagi_lekarza}}
+</p>
+{% if object.wynik %}
+<br>
+<b>Wynik</b>
+<p>
+  {{object.wynik}}
+</p>
+{% endif %}
 
 {% endblock %}

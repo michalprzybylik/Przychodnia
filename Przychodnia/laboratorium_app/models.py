@@ -52,7 +52,7 @@ class BadanieLaboratoryjne(models.Model):
     # TODO: Wynik w sensie pozytywny(true)/negatywny(false) BooleanField,
     #       czy jako TextField ?
     # wynik = models.BooleanField(default=False)
-    wynik = models.TextField()
+    wynik = models.TextField(blank=True)
     # Data wykonania/anulowania przez Laboranta
     dt_wyk_anul_lab = models.DateTimeField(null=True)
     # Data zatwierdzenia/anulowania przez Kier. Laboratorium

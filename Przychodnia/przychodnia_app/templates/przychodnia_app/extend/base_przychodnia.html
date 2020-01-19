@@ -113,6 +113,30 @@
   {# Panel boczny dla laboranta #}
   {% if request.user.role == "LAB" %}
   <ul class="list-group">
+    <li class="list-group-item {% if request.resolver_match.url_name == 'laborant-dashboard' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fas fa-vial"></i>
+        <a href="{% url 'laboratorium_app:laborant-dashboard' %}">
+          Badania laboratoryjne
+        </a>
+      </span>
+    </li>
+    <li class="list-group-item {% if request.resolver_match.url_name == 'laborant-wyk-badania' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fas fa-vial"></i>
+        <a href="{% url 'laboratorium_app:laborant-wyk-badania' %}">
+          Wykonane badania
+        </a>
+      </span>
+    </li>
+    <li class="list-group-item {% if request.resolver_match.url_name == 'laborant-anul-badania' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fas fa-vial"></i>
+        <a href="{% url 'laboratorium_app:laborant-anul-badania' %}">
+          Anulowane badania
+        </a>
+      </span>
+    </li>
     <li class="list-group-item d-flex justify-content-between align-items-center border-top">
       <span>
         <i class="far fa-share-square"></i>
@@ -125,6 +149,22 @@
   {# Panel boczny dla kierownika laboratorium #}
   {% if request.user.role == "KLAB" %}
   <ul class="list-group">
+    <li class="list-group-item {% if request.resolver_match.url_name == 'laborant-wyk-badania' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fas fa-vial"></i>
+        <a href="{% url 'laboratorium_app:laborant-wyk-badania' %}">
+          Wykonane badania
+        </a>
+      </span>
+    </li>
+    <li class="list-group-item {% if request.resolver_match.url_name == 'laborant-anul-badania' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fas fa-vial"></i>
+        <a href="{% url 'laboratorium_app:laborant-anul-badania' %}">
+          Anulowane badania
+        </a>
+      </span>
+    </li>
     <li class="list-group-item d-flex justify-content-between align-items-center border-top">
       <span>
         <i class="far fa-share-square"></i>

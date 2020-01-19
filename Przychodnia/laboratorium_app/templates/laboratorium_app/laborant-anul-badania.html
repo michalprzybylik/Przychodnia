@@ -3,8 +3,9 @@
 {% block content %}
 
 <h4>
-  <i class="fas fas fa-vial"></i>&nbsp;Badania laboratoryjne
+  <i class="fas fas fa-vial"></i>&nbsp;Anulowane badania laboratoryjne
 </h4>
+{% include 'przychodnia_app/include/pagination.html' %}
 <table class="table table-striped">
   <thead>
     <tr>
@@ -14,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for bad_lab in badania %}
+    {% for bad_lab in anul_badania %}
     <tr>
       <td>
         <span data-toggle="tooltip" data-placement="right" title="{{bad_lab.slownik.key}}">
@@ -25,9 +26,6 @@
         {% include 'laboratorium_app/include/badanie_lab_status_text.html' with badanie_lab=bad_lab %}
       </td>
       <td>
-        <a class="btn btn-sm btn-success" href="{% url 'laboratorium_app:laborant-wyk-anul' pk=bad_lab.pk %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Wykonaj badanie laboratoryjne">
-          <i class="fas fa-vial"></i>
-        </a>
         <a href="{% url 'laboratorium_app:laboratorium-bad-lab-detail' pk=bad_lab.pk %}" class="btn btn-sm btn-primary" href="#" role="button" data-toggle="tooltip" data-placement="bottom" title="Pokaż szczegóły badania">
           <i class="far fa-eye"></i>
         </a>
@@ -36,6 +34,6 @@
     {% endfor %}
   </tbody>
 </table>
-
+{% include 'przychodnia_app/include/pagination.html' %}
 
 {% endblock %}

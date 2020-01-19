@@ -13,6 +13,21 @@ urlpatterns = [
         views.LaborantDashboard.as_view(),
         name="laborant-dashboard"
     ),
+    path(
+        "laborant/wykonane-badania",
+        views.LaborantWykonaneBadania.as_view(),
+        name="laborant-wyk-badania"
+    ),
+    path(
+        "laborant/anulowane-badania",
+        views.LaborantAnulowaneBadania.as_view(),
+        name="laborant-anul-badania"
+    ),
+    path(
+        "laborant/wykonaj-badanie/<int:pk>/",
+        views.LaborantWykAnulView.as_view(),
+        name="laborant-wyk-anul"
+    ),
     ###################################################
     # Kierownik Laboratorium
     ###################################################
