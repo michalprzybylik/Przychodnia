@@ -3,15 +3,15 @@
 {% block content %}
 
 
-<h4><i class="fas fa-user-md"></i>&nbsp;Moje anulowane wizyty</h4>
-
+<h4><i class="fas fa-user-md"></i>&nbsp;Anulowane wizyty</h4>
+{% include 'przychodnia_app/include/pagination.html' %}
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Anulowano</th>
       <th scope="col">Pacjent</th>
-      <th scope="col">Umowiono na</th>
-      <th scope="col">Akcje</th>
+      <th scope="col">Umowiony na</th>
+      <th scope="col">Lekarz</th>
     </tr>
   </thead>
   <tbody>
@@ -26,9 +26,7 @@
         </a>
       </td>
       <td>{{wizyta.dt_rej}}</td>
-      <td>
-        {% include 'przychodnia_app/include/action_buttons_common.html' %}
-      </td>
+      <td>{{wizyta.lekarz}}</td>
     </tr>
     {% empty %}
     <tr>
@@ -39,6 +37,6 @@
     {% endfor %}
   </tbody>
 </table>
-
+{% include 'przychodnia_app/include/pagination.html' %}
 
 {% endblock %}

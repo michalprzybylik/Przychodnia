@@ -83,3 +83,13 @@ class RejestratorkaAdresDodaj(CreateView):
     def get_success_url(self):
         messages.success(self.request, 'Adres dodany poprawnie')
         return reverse("przychodnia_app:rejestratorka-dodaj-pacjenta")
+
+
+@method_decorator(login_required(login_url='/login'), name='dispatch')
+@method_decorator(uprawniania_rejestratorka_wymagane, name='dispatch')
+class RejestratorkaAnulowaneWizyty(ListView):
+    template_name = "przychodnia_app/rejestratorka/anulowane-wizyty.html"
+    model = Wizyta
+    context_object_name = 'anulowane_wizyty'
+    paginate_by = 10
+    queryset = Wizyta.wizyty.filter(status="ANUL").order_by("-dt_rej")

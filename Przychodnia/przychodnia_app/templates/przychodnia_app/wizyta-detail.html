@@ -3,7 +3,7 @@
 {% block content %}
 <h4><i class="far fa-minus-square"></i>&nbsp;Wizyta (ID={{wizyta.pk}})</h4>
 <p class="my-0">
-  Zarejestrowano: <b>{{wizyta.dt_rej}}</b> przez <b>{{wizyta.rejestratorka}}</b>
+  Umowiono na: <b>{{wizyta.dt_rej}}</b> przez <b>{{wizyta.rejestratorka}}</b>
 </p>
 {% include 'przychodnia_app/include/wizyta_status.html' with wizyta=wizyta %}
 

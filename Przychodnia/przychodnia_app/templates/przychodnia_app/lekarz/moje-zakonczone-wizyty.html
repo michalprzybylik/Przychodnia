@@ -10,8 +10,7 @@
     <tr>
       <th scope="col">Zakończono</th>
       <th scope="col">Pacjent</th>
-      <th scope="col">Zarejestrowano</th>
-      <th scope="col">Zakończono</th>
+      <th scope="col">Umowiono na</th>
       <th scope="col">Akcje</th>
     </tr>
   </thead>
@@ -22,13 +21,11 @@
         {{wizyta.dt_zak_anul}}
       </td>
       <td>
-        {{wizyta.pacjent}}
-        {% if wizyta.is_old %}
-          <i class="fas fa-exclamation-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Ta wizyta powinna być anulowana!"></i>
-        {% endif %}
+        <a href="{% url 'przychodnia_app:przychodnia-pacjent-detail' pk=wizyta.pacjent.pk %}">
+          {{wizyta.pacjent}}
+        </a>
       </td>
       <td>{{wizyta.dt_rej}}</td>
-      <td>{{wizyta.dt_zak_anul}}</td>
       <td>
         {% include 'przychodnia_app/include/action_buttons_common.html' %}
       </td>

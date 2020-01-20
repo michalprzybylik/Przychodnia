@@ -45,7 +45,7 @@ class LekarzZakonczoneWizyty(View):
     template_name = "przychodnia_app/lekarz/moje-zakonczone-wizyty.html"
     def get(self, request):
         ja = lekarz_by_request(request)
-        zakonczone_wizyty = Wizyta.wizyty.filter_by_lekarz(ja, typ="ZAK")
+        zakonczone_wizyty = Wizyta.wizyty.filter_by_lekarz(ja, typ="ZAK").order_by('-dt_zak_anul')
         return render(request, self.template_name, {
             "zakonczone_wizyty": zakonczone_wizyty
         })
@@ -57,7 +57,7 @@ class LekarzAnulowaneWizyty(View):
     template_name = "przychodnia_app/lekarz/moje-anulowane-wizyty.html"
     def get(self, request):
         ja = lekarz_by_request(request)
-        anulowane_wizyty = Wizyta.wizyty.filter_by_lekarz(ja, typ="ANUL")
+        anulowane_wizyty = Wizyta.wizyty.filter_by_lekarz(ja, typ="ANUL").order_by('-dt_zak_anul')
         return render(request, self.template_name, {
             "anulowane_wizyty": anulowane_wizyty
         })
@@ -128,7 +128,7 @@ class LekarzPrzegladajInneWizyty(ListView):
 
     def get(self, request, *args, **kwargs):
         realizowana_wizyta = get_object_or_404(
-            self.model, id=kwargs["wizyta_id"], status="REJ"
+            self.model, id=kwargs["wizyta_id"]
         )
         self.object_list = self.get_queryset(realizowana_wizyta)
         context = self.get_context_data()
@@ -141,7 +141,7 @@ class LekarzPrzegladajInneWizyty(ListView):
     def get_queryset(self, realizowana_wizyta):
         return self.model.wizyty.inne_wizyty_pacjenta(
             realizowana_wizyta
-        )
+        ).order_by("-dt_rej")
 
 
 class BadanieView():

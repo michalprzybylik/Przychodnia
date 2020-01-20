@@ -35,6 +35,14 @@
       <span class="badge badge-danger">{{stare_wizyty_count}}</span>
       {% endif %}
     </li>
+    <li class="list-group-item {% if request.resolver_match.url_name == 'rejestratorka-wizyty-anulowane' %}active{% endif %} d-flex justify-content-between align-items-center">
+      <span>
+        <i class="fas fa-ban"></i>
+        <a href="{% url 'przychodnia_app:rejestratorka-wizyty-anulowane' %}">
+          Anulowane wizyty
+        </a>
+      </span>
+    </li>
     <li class="list-group-item {% if request.resolver_match.url_name == 'rejestratorka-rejestruj-wizyte' %}active{% endif %} d-flex justify-content-between align-items-center">
       <span>
         <i class="fas fa-user-clock"></i>

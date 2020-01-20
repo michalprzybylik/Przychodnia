@@ -21,6 +21,11 @@ urlpatterns = [
         name="rejestratorka-wizyty-stare"
     ),
     path(
+        "rejestratorka/wizyty-anulowane",
+        views.RejestratorkaAnulowaneWizyty.as_view(),
+        name="rejestratorka-wizyty-anulowane"
+    ),
+    path(
         "rejestratorka/rejestruj-wizyte/",
         views.RejestratorkaWizytaDodaj.as_view(),
         name="rejestratorka-rejestruj-wizyte"

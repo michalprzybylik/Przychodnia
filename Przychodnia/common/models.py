@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     ROLES = (
         ('REJ', 'REJESTRATORKA'),
+        ('ADM', 'ADMIN'),
         ('LEK', 'LEKARZ'),
         ('LAB', 'LABORANT'),
         ('KLAB', 'KIEROWNIK LABORATORIUM')
